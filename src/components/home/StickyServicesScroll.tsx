@@ -111,18 +111,11 @@ export const StickyServicesScroll: React.FC = () => {
           scrollTrigger: {
             trigger: containerRef.current,
             pin: true,
+            anticipatePin: 1,
             start: 'top top',
             end: `+=${scrollDistance}px`,
-            scrub: 0.6,
-            snap: {
-              snapTo: 1 / (totalCards - 1),
-              duration: { min: 0.2, max: 0.4 },
-              ease: 'power1.inOut',
-              inertia: false,
-            },
+            scrub: 1,
             invalidateOnRefresh: true,
-            fastScrollEnd: true,
-            preventOverlaps: true,
             onUpdate: (self) => {
               const currentIdx = Math.min(
                 totalCards - 1,

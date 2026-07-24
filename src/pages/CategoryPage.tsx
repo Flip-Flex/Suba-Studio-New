@@ -71,6 +71,18 @@ const CategoryPage = () => {
     const isBridalPortraits = subcategory === 'bridal-portraits';
     const isMaternity = subcategory === 'maternity';
 
+    const subLower = subcategory?.toLowerCase() || '';
+    const videoKey = `${subLower}-video`;
+    const currentKey = (isVideoRoute && categoryData[videoKey])
+        ? videoKey
+        : Object.keys(categoryData).find(k => subLower.includes(k));
+
+    const categoryKeys = Object.keys(categoryData);
+    const currentIndex = currentKey ? categoryKeys.indexOf(currentKey) : -1;
+    
+    const prevCategory = currentIndex > 0 ? { id: categoryKeys[currentIndex - 1], title: categoryData[categoryKeys[currentIndex - 1]].title } : null;
+    const nextCategory = currentIndex !== -1 && currentIndex < categoryKeys.length - 1 ? { id: categoryKeys[currentIndex + 1], title: categoryData[categoryKeys[currentIndex + 1]].title } : null;
+
     return (
         <div className="min-h-screen bg-white">
             {/* Hero Section */}
@@ -387,7 +399,7 @@ const CategoryPage = () => {
             )}
 
             {/* Pagination Controls */}
-            {categoryData.length > 1 && (
+            {categoryKeys.length > 1 && (
                 <div className="flex justify-between items-center py-12 px-6 border-t border-gray-100 max-w-4xl mx-auto">
                     {prevCategory ? (
                         <Link to={`/category/${prevCategory.id}`} className="group flex flex-col items-start gap-2">
