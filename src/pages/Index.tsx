@@ -102,7 +102,7 @@ const Index = () => {
             preload="auto"
             className="w-full h-full object-cover"
           >
-            <source src="/Landscape.mp4" type="video/mp4" />
+            <source src="/Landscape.mp4?v=2" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-black/30" />
         </div>

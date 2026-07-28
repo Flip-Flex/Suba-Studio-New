@@ -79,7 +79,7 @@ const servicesData: ServiceCardData[] = [
     id: 7,
     title: "Baby Photography",
     description: "Preserving the sweetest moments forever.",
-    image: "/Baby/101.jpg",
+    image: "/Baby/26.jpg",
     link: "/weddings/baby",
     icon: <Smile className="w-5 h-5 sm:w-6 sm:h-6 text-zg-blue" />
   }
