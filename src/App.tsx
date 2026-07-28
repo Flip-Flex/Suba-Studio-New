@@ -34,6 +34,7 @@ const App = () => (
               <Route path="/weddings/:subcategory" element={<CategoryPage />} />
               <Route path="/gallery/:subcategory" element={<CategoryPage />} />
               <Route path="/outdoor/:subcategory" element={<CategoryPage />} />
+              <Route path="/portfolio/:subcategory" element={<CategoryPage />} />
               <Route path="/videos" element={<Videos />} />
               <Route path="*" element={<NotFound />} />
             </Routes>

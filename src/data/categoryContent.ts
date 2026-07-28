@@ -17,6 +17,7 @@ export interface CategoryContent {
     whyChooseText: string;
     heroImage: string;
     collageImages?: string[];
+    trailImages?: string[];
     albums: { id: number; title: string; image: string }[];
     videoList?: VideoItem[];
 }
@@ -407,6 +408,69 @@ export const categoryData: Record<string, CategoryContent> = {
         videoList: [
             { id: 1, title: "A Day in the Sun", url: "/Od.mp4" },
             { id: 2, title: "Baby Shower Joy", url: "/Bby.mp4" }
+        ]
+    },
+    "male-model": {
+        title: "Male Model Photography",
+        tagline: "Strong, striking, and effortlessly cinematic.",
+        description: "Whether you're building a professional portfolio, looking for high-fashion editorial shots, or needing polished lifestyle images, we specialize in capturing the bold and distinct personality of our male clients. We use dramatic lighting, sharp compositions, and creative direction to ensure you stand out.",
+        whyChooseTitle: "Professional Portfolio Building",
+        whyChooseText: "From classic portraits to contemporary fashion styles, we tailor our shoots to highlight your unique features and strengths. Our team will guide you through posing and expressions to achieve a magazine-ready look.",
+        heroImage: "/landscape.png",
+        trailImages: [
+            "/couple_portrait/b1.JPG",
+            "/couple_portrait/b2.JPG",
+            "/couple_portrait/b3.JPG",
+            "/couple_portrait/b4.JPG",
+            "/couple_portrait/b6.JPG",
+            "/couple_portrait/b1.JPG",
+            "/couple_portrait/b2.JPG",
+            "/couple_portrait/b3.JPG",
+            "/couple_portrait/b4.JPG",
+            "/couple_portrait/b6.JPG",
+            "/couple_portrait/b1.JPG",
+            "/couple_portrait/b2.JPG"
+        ],
+        albums: [
+            { id: 1, title: "Editorial Style", image: "/couple_portrait/b1.JPG" },
+            { id: 2, title: "Lifestyle", image: "/couple_portrait/b2.JPG" },
+            { id: 3, title: "Studio Lighting", image: "/couple_portrait/b3.JPG" },
+            { id: 4, title: "Outdoor Session", image: "/couple_portrait/b4.JPG" },
+            { id: 5, title: "Urban Fashion", image: "/couple_portrait/b6.JPG" },
+            { id: 6, title: "Street Style", image: "/couple_portrait/pp2.jpg" },
+            { id: 7, title: "Classic Portrait", image: "/couple_portrait/pp3.jpg" },
+            { id: 8, title: "Casual Wear", image: "/couple_portrait/pp4.jpg" },
+            { id: 9, title: "High Fashion", image: "/couple_portrait/pp7.jpg" },
+            { id: 10, title: "Moody Lighting", image: "/couple_portrait/pp8.jpg" },
+            { id: 11, title: "Sunset Shoot", image: "/couple_portrait/pp9.jpg" },
+            { id: 12, title: "Monochrome", image: "/couple_portrait/pp11.jpg" },
+        ]
+    },
+    "female-model": {
+        title: "Female Model Photography",
+        tagline: "Elegance, grace, and captivating beauty.",
+        description: "Our female model photography ranges from stunning high-fashion and beauty portraits to artistic editorial concepts. We understand that every model brings a different aura, and we work collaboratively to highlight your unique style with flawless lighting, styling suggestions, and creative angles.",
+        whyChooseTitle: "Elevate Your Modeling Career",
+        whyChooseText: "A strong portfolio is your best asset. We focus on versatility, capturing a wide range of emotions and looks—from natural, stripped-back beauty to highly stylized fashion shots. Let us help you create an unforgettable impression.",
+        heroImage: "/landscape.png",
+        trailImages: [
+            "/Bridal/1.jpg",
+            "/Bridal/2.jpg",
+            "/Bridal/3.jpg",
+            "/Bridal/4.JPG",
+            "/Bridal/5.JPG",
+            "/Bridal/1.jpg",
+            "/Bridal/2.jpg",
+            "/Bridal/3.jpg",
+            "/Bridal/4.JPG",
+            "/Bridal/5.JPG",
+            "/Bridal/1.jpg",
+            "/Bridal/2.jpg"
+        ],
+        albums: [
+            { id: 1, title: "Beauty Portraits", image: "/portrait.png" },
+            { id: 2, title: "Fashion Editorial", image: "/landscape.png" },
+            { id: 3, title: "Lifestyle Elegance", image: "/portrait.png" },
         ]
     }
 };

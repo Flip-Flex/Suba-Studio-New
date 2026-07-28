@@ -44,6 +44,15 @@ const navData = [
         ]
     },
     {
+        name: "PORTFOLIO",
+        path: "/portfolio",
+        vertical: true,
+        subMenu: [
+            { name: "Male Model Portfolios", path: "/portfolio/male-model", hasCamera: true },
+            { name: "Female Model Portfolios", path: "/portfolio/female-model", hasCamera: true },
+        ]
+    },
+    {
         name: "VIDEOS",
         path: "/videos",
         noDropdown: true,
@@ -306,7 +315,7 @@ const Navbar = () => {
                 <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 flex items-center justify-between relative h-10 md:h-12 [padding-left:max(16px,env(safe-area-inset-left))] [padding-right:max(16px,env(safe-area-inset-right))]">
                     
                     {/* Left Section (Desktop Split vs Scrolled Logo Slot) */}
-                    <div className={`hidden lg:flex items-center justify-start z-40 ${isSplitLayout ? 'flex-1' : 'shrink-0'}`}>
+                    <div className={`hidden lg:flex items-center z-40 ${isSplitLayout ? 'flex-1 justify-end pr-8 lg:pr-12 xl:pr-16' : 'shrink-0 justify-start'}`}>
                         {!isHome && (
                             <button
                                 onClick={handleBack}
@@ -321,7 +330,7 @@ const Navbar = () => {
                             </button>
                         )}
                         {isSplitLayout ? (
-                            <div className="flex items-center gap-0.5 xl:gap-1.5">
+                            <div className="flex items-center gap-2 xl:gap-5">
                                 {leftNavItems.map(renderDesktopNavItem)}
                             </div>
                         ) : isHomeClickAnimating ? null : (
@@ -412,14 +421,14 @@ const Navbar = () => {
                     </div>
 
                     {/* Right Section: Nav links on desktop, Hamburger button always visible on right */}
-                    <div className={`flex items-center justify-end z-50 ${isSplitLayout ? 'flex-1' : 'shrink-0 ml-auto'} gap-1 sm:gap-1.5`}>
+                    <div className={`flex items-center z-50 ${isSplitLayout ? 'flex-1 justify-between pl-8 lg:pl-12 xl:pl-16' : 'shrink-0 ml-auto justify-end'} gap-1 sm:gap-1.5`}>
                         {!isSplitLayout && (
-                            <div className="hidden lg:flex items-center gap-0.5 xl:gap-1.5">
+                            <div className="hidden lg:flex items-center gap-1 xl:gap-3">
                                 {leftNavItems.map(renderDesktopNavItem)}
                             </div>
                         )}
                         
-                        <div className="hidden lg:flex items-center gap-0.5 xl:gap-1.5">
+                        <div className="hidden lg:flex items-center gap-2 xl:gap-5">
                             {rightNavItems.map(renderDesktopNavItem)}
                         </div>
 

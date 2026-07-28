@@ -12,6 +12,8 @@ import CouplePortraitsPage from '@/pages/CouplePortraitsPage';
 import GroomPortraitsPage from '@/pages/GroomPortraitsPage';
 import WeddingRitualsPage from '@/pages/WeddingRitualsPage';
 import CandidMomentsPage from '@/pages/CandidMomentsPage';
+import ThreeDMarquee from "@/components/ui/3d-marquee";
+import MasonryGrid from "@/components/ui/masonry-grid";
 const CategoryPage = () => {
     const { subcategory } = useParams();
     const { pathname } = useLocation();
@@ -70,6 +72,7 @@ const CategoryPage = () => {
     const isFullVisibilityCategory = subcategory === 'bridal-portraits' || subcategory === 'groom-portraits' || subcategory === 'christian';
     const isBridalPortraits = subcategory === 'bridal-portraits';
     const isMaternity = subcategory === 'maternity';
+    const isPortfolio = subcategory === 'male-model' || subcategory === 'female-model';
 
     const subLower = subcategory?.toLowerCase() || '';
     const videoKey = `${subLower}-video`;
@@ -86,9 +89,22 @@ const CategoryPage = () => {
     return (
         <div className="min-h-screen bg-white">
             {/* Hero Section */}
-            <section className={`relative flex items-center justify-center overflow-hidden ${isVideoRoute ? 'h-screen' : (isFullVisibilityCategory ? 'h-[60vh] md:h-[75vh] bg-black' : (isPortraitOrRitual ? 'h-[80vh] md:h-[90vh]' : 'h-[70vh] md:h-[85vh]'))}`}>
+            <section className={`relative flex items-center justify-center overflow-hidden ${isVideoRoute || isPortfolio ? 'h-screen' : (isFullVisibilityCategory ? 'h-[60vh] md:h-[75vh] bg-black' : (isPortraitOrRitual ? 'h-[80vh] md:h-[90vh]' : 'h-[70vh] md:h-[85vh]'))}`}>
                 <div className="absolute inset-0">
-                    {content.heroImage?.endsWith('.mp4') ? (
+                    {isPortfolio && content.trailImages ? (
+                        <div className="w-full h-full bg-[#111] relative overflow-hidden">
+                            <div 
+                                className="absolute right-0 top-0 w-full lg:w-[60%] h-full opacity-60"
+                                style={{ maskImage: 'linear-gradient(to right, transparent, black 25%)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 25%)' }}
+                            >
+                                <ThreeDMarquee 
+                                    images={content.trailImages} 
+                                    className="!h-full !max-xl:h-full !max-sm:h-full !rounded-none" 
+                                />
+                            </div>
+                            <div className="absolute inset-0 bg-gradient-to-l from-black/20 to-black/80 lg:to-black/90 pointer-events-none" />
+                        </div>
+                    ) : content.heroImage?.endsWith('.mp4') ? (
                         <video
                             src={content.heroImage}
                             autoPlay
@@ -104,9 +120,9 @@ const CategoryPage = () => {
                             className={`w-full h-full ${isFullVisibilityCategory ? 'object-contain' : 'object-cover'} ${isPortraitOrRitual ? 'object-[center_10%]' : 'object-top'} ${isVideoRoute ? 'animate-ken-burns' : ''}`}
                         />
                     )}
-                    <div className={`absolute inset-0 ${isVideoRoute ? 'bg-gradient-to-b from-black/20 via-black/40 to-black/60' : 'bg-black/30'}`} />
+                    {!isPortfolio && <div className={`absolute inset-0 ${isVideoRoute ? 'bg-gradient-to-b from-black/20 via-black/40 to-black/60' : 'bg-black/30'}`} />}
                 </div>
-                <div className="relative z-10 container mx-auto px-6 flex flex-col items-center justify-center text-center text-white h-full">
+                <div className={`relative z-10 container mx-auto px-6 flex flex-col items-center justify-center text-center text-white h-full ${isPortfolio ? 'pointer-events-none' : ''}`}>
                     <Reveal>
                         {isVideoRoute && (
                             <span className="block text-[10px] md:text-xs font-medium tracking-[0.4em] uppercase text-white/70 mb-8">
@@ -130,7 +146,7 @@ const CategoryPage = () => {
             </section>
 
             {/* Content Section */}
-            {!isVideoRoute && (
+            {!isVideoRoute && !isPortfolio && (
                 <section className="py-24 bg-[#f3f3f3]">
                     <div className="container mx-auto px-6">
                         <div className={`flex flex-col lg:flex-row gap-16 items-start`}>
@@ -383,17 +399,36 @@ const CategoryPage = () => {
                             </Reveal>
                         )}
 
-                        <MasonryGallery
-                            images={content.albums}
-                            columns={{
-                                default: 1,
-                                sm: 2,
-                                md: 3,
-                                lg: 3,
-                                xl: (subcategory === 'baby' || subcategory === 'maternity') ? 4 : 3
-                            }}
-                            gap="gap-10 space-y-10"
-                        />
+                        {subcategory === 'male-model' ? (
+                            <MasonryGrid
+                                items={content.albums}
+                                className="columns-1 sm:columns-2 lg:columns-3"
+                                gap="2.5rem"
+                                renderItem={(item) => (
+                                    <div className="overflow-hidden rounded-2xl shadow-lg bg-white h-full relative group">
+                                        <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors z-10 pointer-events-none" />
+                                        <img
+                                            src={item.image}
+                                            alt={item.title}
+                                            className="w-full h-auto object-cover"
+                                            loading="lazy"
+                                        />
+                                    </div>
+                                )}
+                            />
+                        ) : (
+                            <MasonryGallery
+                                images={content.albums}
+                                columns={{
+                                    default: 1,
+                                    sm: 2,
+                                    md: 3,
+                                    lg: 3,
+                                    xl: (subcategory === 'baby' || subcategory === 'maternity') ? 4 : 3
+                                }}
+                                gap="gap-10 space-y-10"
+                            />
+                        )}
                     </div>
                 </section>
             )}
