@@ -122,8 +122,8 @@ const MasonryGrid = <T,>({
           custom={index}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "50px 0px -50px 0px" }}
-          className="mb-4 break-inside-avoid"
+          viewport={{ once: false, amount: 0.1, margin: "100px 0px -100px 0px" }}
+          className="mb-0 sm:mb-6 break-inside-avoid"
           variants={itemVariants}
           role="listitem"
         >

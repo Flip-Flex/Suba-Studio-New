@@ -97,6 +97,7 @@ const Index = () => {
             loop
             muted
             playsInline
+            disablePictureInPicture
             controls={false}
             preload="auto"
             className="w-full h-full object-cover"

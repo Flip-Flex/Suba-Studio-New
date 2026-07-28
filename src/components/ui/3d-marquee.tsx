@@ -28,10 +28,20 @@ const ThreeDMarquee = ({
   images = defaultImages,
   className,
 }: ThreeDMarqueeProps) => {
-  const chunkSize = Math.ceil(images.length / 3)
+  // Shuffle and duplicate images to ensure the grid is tall enough and random
+  const shuffledImages = React.useMemo(() => {
+    const arr = [...images, ...images, ...images]
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }, [images])
+  
+  const chunkSize = Math.ceil(shuffledImages.length / 3)
   const chunks = Array.from({ length: 3 }, (_, colIndex) => {
     const start = colIndex * chunkSize
-    return images.slice(start, start + chunkSize)
+    return shuffledImages.slice(start, start + chunkSize)
   })
 
   return (
@@ -42,18 +52,19 @@ const ThreeDMarquee = ({
       )}
     >
       <div className='flex w-full h-full items-center justify-center'>
-        <div className='aspect-square w-[45rem] h-[45rem] shrink-0 scale-[1.35] max-xl:w-full max-xl:h-full max-xl:scale-110 max-sm:scale-[1.3]'>
+        <div className='aspect-square w-[45rem] h-[45rem] shrink-0 scale-[1.35] max-xl:w-full max-xl:h-full max-xl:scale-110 max-sm:scale-[2.0]'>
           <div
             style={{ transform: 'rotateX(45deg) rotateY(0deg) rotateZ(45deg)' }}
-            className='relative top-0 right-[-55%] grid w-full h-full origin-top-left grid-cols-3 gap-5 transform-3d max-xl:-top-[7.5rem] max-xl:right-[-45%] max-sm:top-0 max-sm:gap-2'
+            className='relative top-0 right-[-55%] grid w-full h-full origin-top-left grid-cols-3 gap-5 transform-3d max-xl:-top-[7.5rem] max-xl:right-[-45%] max-sm:top-[15%] max-sm:right-[-35%] max-sm:gap-2'
           >
             {chunks.map((subarray, colIndex) => (
               <motion.figure
-                animate={{ y: colIndex % 2 === 0 ? 60 : -60 }}
+                animate={{ y: colIndex % 2 === 0 ? ['-20%', '0%'] : ['0%', '-20%'] }}
                 transition={{
-                  duration: colIndex % 2 === 0 ? 10 : 15,
+                  duration: colIndex % 2 === 0 ? 25 : 30,
                   repeat: Infinity,
                   repeatType: 'reverse',
+                  ease: 'linear'
                 }}
                 key={colIndex + 'marquee'}
                 className='flex flex-col items-start gap-6 max-sm:gap-3'

@@ -12,7 +12,8 @@ import CouplePortraitsPage from '@/pages/CouplePortraitsPage';
 import GroomPortraitsPage from '@/pages/GroomPortraitsPage';
 import WeddingRitualsPage from '@/pages/WeddingRitualsPage';
 import CandidMomentsPage from '@/pages/CandidMomentsPage';
-import ThreeDMarquee from "@/components/ui/3d-marquee";
+import ThreeDMarquee from '../components/ui/3d-marquee';
+import { TextRoll } from '../components/ui/text-roll';
 import MasonryGrid from "@/components/ui/masonry-grid";
 const CategoryPage = () => {
     const { subcategory } = useParams();
@@ -28,7 +29,7 @@ const CategoryPage = () => {
             const videoKey = `${subLower}-video`;
             const key = (isVideoRoute && categoryData[videoKey])
                 ? videoKey
-                : Object.keys(categoryData).find(k => subLower.includes(k));
+                : categoryData[subLower] ? subLower : Object.keys(categoryData).find(k => subLower.includes(k));
 
             if (key) {
                 setContent(categoryData[key]);
@@ -78,7 +79,7 @@ const CategoryPage = () => {
     const videoKey = `${subLower}-video`;
     const currentKey = (isVideoRoute && categoryData[videoKey])
         ? videoKey
-        : Object.keys(categoryData).find(k => subLower.includes(k));
+        : categoryData[subLower] ? subLower : Object.keys(categoryData).find(k => subLower.includes(k));
 
     const categoryKeys = Object.keys(categoryData);
     const currentIndex = currentKey ? categoryKeys.indexOf(currentKey) : -1;
@@ -95,7 +96,10 @@ const CategoryPage = () => {
                         <div className="w-full h-full bg-[#111] relative overflow-hidden">
                             <div 
                                 className="absolute right-0 top-0 w-full lg:w-[60%] h-full opacity-60"
-                                style={{ maskImage: 'linear-gradient(to right, transparent, black 25%)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 25%)' }}
+                                style={{ 
+                                    maskImage: typeof window !== 'undefined' && window.innerWidth < 1024 ? 'linear-gradient(to bottom, black 60%, transparent)' : 'linear-gradient(to right, transparent, black 25%)', 
+                                    WebkitMaskImage: typeof window !== 'undefined' && window.innerWidth < 1024 ? 'linear-gradient(to bottom, black 60%, transparent)' : 'linear-gradient(to right, transparent, black 25%)' 
+                                }}
                             >
                                 <ThreeDMarquee 
                                     images={content.trailImages} 
@@ -111,6 +115,7 @@ const CategoryPage = () => {
                             loop
                             muted
                             playsInline
+                            disablePictureInPicture
                             className={`w-full h-full object-cover ${isVideoRoute ? 'animate-ken-burns' : ''}`}
                         />
                     ) : (
@@ -131,8 +136,14 @@ const CategoryPage = () => {
                         )}
                         <h1 className={isVideoRoute 
                             ? "text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-light mb-6 tracking-wide" 
-                            : "text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-poppins font-black mb-4 text-transparent [-webkit-text-stroke:1px_white] sm:[-webkit-text-stroke:1.5px_white] tracking-tight whitespace-nowrap px-4 overflow-hidden text-ellipsis"}>
-                            {content.title}
+                            : "text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-poppins font-bold mb-4 text-white tracking-tight whitespace-nowrap px-4 overflow-hidden text-ellipsis"}>
+                            {isPortfolio ? (
+                                <TextRoll duration={0.5} getEnterDelay={(i) => i * 0.04}>
+                                    {content.title}
+                                </TextRoll>
+                            ) : (
+                                content.title
+                            )}
                         </h1>
                         <p className={isVideoRoute
                             ? "text-lg md:text-xl font-light tracking-[0.05em] text-white/80 max-w-2xl mx-auto"
@@ -389,7 +400,7 @@ const CategoryPage = () => {
             {/* Featured Albums */}
             {!isVideoRoute && (
                 <section className={`py-24 ${subcategory === 'baby' || subcategory === 'maternity' ? 'bg-white' : 'bg-gray-50'} overflow-hidden`}>
-                    <div className={`${isVideoRoute ? 'w-full px-2' : 'container mx-auto px-6'}`}>
+                    <div className={`${isVideoRoute ? 'w-full px-2' : 'container mx-auto px-0 sm:px-6'}`}>
                         {!isVideoRoute && (
                             <Reveal>
                                 <div className="text-center mb-16">
@@ -399,13 +410,13 @@ const CategoryPage = () => {
                             </Reveal>
                         )}
 
-                        {subcategory === 'male-model' ? (
+                        {isPortfolio ? (
                             <MasonryGrid
                                 items={content.albums}
                                 className="columns-1 sm:columns-2 lg:columns-3"
                                 gap="2.5rem"
                                 renderItem={(item) => (
-                                    <div className="overflow-hidden rounded-2xl shadow-lg bg-white h-full relative group">
+                                    <div className="overflow-hidden rounded-none sm:rounded-2xl shadow-lg bg-white h-full relative group">
                                         <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors z-10 pointer-events-none" />
                                         <img
                                             src={item.image}
