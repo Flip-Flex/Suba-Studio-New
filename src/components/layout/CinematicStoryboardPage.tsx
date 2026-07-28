@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 import SmoothScroll from '@/components/layout/SmoothScroll';
 import { CinematicLightbox } from '@/components/ui/cinematic-lightbox';
 import gsap from 'gsap';
@@ -17,13 +18,48 @@ const getOrientationAspect = (src: string, defaultClass: string) => {
     return defaultClass;
 };
 
-const premiumQuotes = [
-  "Every ritual is a <span class='text-[#D4AF37]'>blessing</span>.<br/>Every blessing becomes a memory.",
-  "<span class='text-[#D4AF37]'>Two souls.</span><br/>One sacred promise.",
-  "Love begins with faith.<br/><span class='text-[#D4AF37]'>Memories begin with us.</span>",
-  "The most beautiful stories<br/>are written through <span class='text-[#D4AF37]'>tradition</span>.",
-  "Some moments last a day.<br/>These <span class='text-[#D4AF37]'>memories last forever</span>."
-];
+const categoryQuotes: Record<string, string[]> = {
+  "hindu": [
+    "Every sacred ritual marks<br/>the beginning of a <span class='text-[#D4AF37]'>lifetime together</span>.",
+    "Where traditions meet emotions,<br/><span class='text-[#D4AF37]'>timeless memories</span> are created.",
+    "Every sacred fire witnesses<br/>a <span class='text-[#D4AF37]'>promise that lasts forever</span>.",
+    "Preserving every sacred moment<br/>with <span class='text-[#D4AF37]'>grace, elegance, and heart</span>.",
+  ],
+  "christian": [
+    "Where faith unites two hearts,<br/>love finds its <span class='text-[#D4AF37]'>forever home</span>.",
+    "Every prayer, every smile,<br/>every embrace tells a <span class='text-[#D4AF37]'>sacred story</span>.",
+    "<span class='text-[#D4AF37]'>Two souls, one promise</span>,<br/>countless memories.",
+    "Honoring your covenant<br/>with <span class='text-[#D4AF37]'>photographs that last a lifetime</span>.",
+  ],
+  "engagement": [
+    "Every forever begins<br/>with a single <span class='text-[#D4AF37]'>'Yes.'</span>",
+    "The promise of forever<br/>deserves its <span class='text-[#D4AF37]'>own story</span>.",
+    "Because every love story<br/>deserves a <span class='text-[#D4AF37]'>beautiful beginning</span>.",
+  ],
+  "pre-wedding": [
+    "Before the vows, there is<br/>a <span class='text-[#D4AF37]'>love story</span> waiting to be told.",
+    "Every adventure together<br/>deserves to be <span class='text-[#D4AF37]'>remembered</span>.",
+    "Romance isn't posed—<br/>it's <span class='text-[#D4AF37]'>felt</span>.",
+    "Beautiful beginnings deserve<br/><span class='text-[#D4AF37]'>timeless photographs</span>.",
+  ],
+  "post-wedding": [
+    "The celebration may end,<br/>but your <span class='text-[#D4AF37]'>story has only begun</span>.",
+    "Beyond the ceremony lies<br/>a <span class='text-[#D4AF37]'>lifetime of beautiful memories</span>.",
+    "Your journey together is<br/>the <span class='text-[#D4AF37]'>greatest story</span> we'll ever capture.",
+    "Every new beginning deserves<br/>another <span class='text-[#D4AF37]'>beautiful frame</span>.",
+  ],
+  "maternity": [
+    "Every heartbeat tells the story<br/>of a <span class='text-[#D4AF37]'>love yet to be seen</span>.",
+    "Celebrating the quiet<br/><span class='text-[#D4AF37]'>strength of motherhood</span>.",
+    "Holding <span class='text-[#D4AF37]'>tomorrow close</span><br/>before it arrives.",
+    "Capturing the beauty<br/>of the <span class='text-[#D4AF37]'>life growing within</span>.",
+  ],
+  "baby": [
+    "Tiny hands, tiny feet,<br/><span class='text-[#D4AF37]'>endless love</span>.",
+    "Because they are only<br/><span class='text-[#D4AF37]'>this little once</span>.",
+    "Today's tiny moments become<br/>tomorrow's <span class='text-[#D4AF37]'>greatest memories</span>.",
+  ],
+};
 
 // Helper to chunk array
 const chunkArray = <T,>(arr: T[], size: number) => {
@@ -73,74 +109,15 @@ export default function CinematicStoryboardPage({ subcategory }: { subcategory: 
     useEffect(() => {
         const ctx = gsap.context(() => {
             if (!mainRef.current) return;
-
-            // 1. Image Entrance Animations & Parallax
-            const storyChapters = gsap.utils.toArray('.story-chapter') as HTMLElement[];
-            
-            storyChapters.forEach((chapter) => {
-                const img1 = chapter.querySelector('.story-img-1');
-                const img2 = chapter.querySelector('.story-img-2');
-                const img3 = chapter.querySelector('.story-img-3');
-                
-                // Pure Scroll Animation: Individual triggers so they come in one by one as user scrolls
-                if (img1) {
-                    gsap.fromTo(img1, 
-                        { xPercent: -60, y: 100, rotation: -8, opacity: 0 },
-                        { 
-                            xPercent: 0, y: 0, rotation: 0, opacity: 1, ease: "none", force3D: true,
-                            scrollTrigger: {
-                                trigger: img1,
-                                start: "top 95%", 
-                                end: "top 50%", 
-                                scrub: true
-                            }
-                        }
-                    );
-                }
-                
-                if (img2) {
-                    gsap.fromTo(img2, 
-                        { xPercent: 60, y: 100, rotation: 8, opacity: 0 },
-                        { 
-                            xPercent: 0, y: 0, rotation: 0, opacity: 1, ease: "none", force3D: true,
-                            scrollTrigger: {
-                                trigger: img2,
-                                start: "top 95%",
-                                end: "top 50%",
-                                scrub: true
-                            }
-                        }
-                    );
-                }
-                
-                if (img3) {
-                    gsap.fromTo(img3, 
-                        { xPercent: -60, y: 100, rotation: -8, opacity: 0 },
-                        { 
-                            xPercent: 0, y: 0, rotation: 0, opacity: 1, ease: "none", force3D: true,
-                            scrollTrigger: {
-                                trigger: img3,
-                                start: "top 95%",
-                                end: "top 50%",
-                                scrub: true
-                            }
-                        }
-                    );
-                }
-
-
-            });
-
-            // 2. Full-Screen Quote Parallax & Fade-in
+            // Quote fade-in only
             const quotes = gsap.utils.toArray('.quote-section') as HTMLElement[];
             quotes.forEach((quote) => {
                 const text = quote.querySelector('.quote-text');
                 const bg = quote.querySelector('.quote-bg');
-                
                 if (text) {
-                    gsap.fromTo(text, 
+                    gsap.fromTo(text,
                         { y: 50, opacity: 0 },
-                        { 
+                        {
                             y: 0, opacity: 1, duration: 1.5, ease: "power3.out",
                             scrollTrigger: {
                                 trigger: quote,
@@ -150,7 +127,6 @@ export default function CinematicStoryboardPage({ subcategory }: { subcategory: 
                         }
                     );
                 }
-                
                 if (bg) {
                     gsap.fromTo(bg,
                         { yPercent: -15 },
@@ -164,14 +140,34 @@ export default function CinematicStoryboardPage({ subcategory }: { subcategory: 
                                 scrub: true
                             }
                         }
-                    )
+                    );
                 }
             });
-
         }, mainRef);
-        
         return () => ctx.revert();
-    }, [chapters.length, subcategory]); // Re-run GSAP when subcategory changes
+    }, [chapters.length, subcategory]);
+
+    // Framer Motion variants matching the Our Works masonry-grid animation
+    const imgVariants = {
+        hidden: (dir: number) => ({
+            opacity: 0,
+            y: 50,
+            x: dir * 120,
+            scale: 0.92,
+        }),
+        visible: {
+            opacity: 1,
+            y: 0,
+            x: 0,
+            scale: 1,
+            transition: {
+                type: "spring" as const,
+                damping: 22,
+                stiffness: 100,
+            },
+        },
+    };
+
 
     // Fallback if content isn't found
     if (!content) {
@@ -180,7 +176,7 @@ export default function CinematicStoryboardPage({ subcategory }: { subcategory: 
 
     return (
         <SmoothScroll>
-            <div className="bg-[#0a0a0a] min-h-screen text-white font-sans selection:bg-[#D4AF37]/30 selection:text-white overflow-hidden">
+            <div className="bg-[#0a0a0a] min-h-screen text-white font-sans selection:bg-[#D4AF37]/30 selection:text-white overflow-x-hidden">
                 {/* Intro Section */}
                 <section className="min-h-screen flex flex-col items-center justify-center text-center relative z-20">
                     {/* Cover Background */}
@@ -212,17 +208,23 @@ export default function CinematicStoryboardPage({ subcategory }: { subcategory: 
                     {chapters.map((chunk, chapterIdx) => {
                         const isLast = chapterIdx === chapters.length - 1;
                         const showQuote = chapterIdx % 2 === 0 && !isLast;
-                        const quoteHtml = premiumQuotes[chapterIdx % premiumQuotes.length];
+                        const quotes = categoryQuotes[subcategory] || categoryQuotes["hindu"];
+                        const quoteHtml = quotes[chapterIdx % quotes.length];
                         
                         return (
                             <React.Fragment key={`chapter-${chapterIdx}`}>
                                 {/* Story Chapter - Cinematic 3-Image Stack */}
-                                <section className="story-chapter relative w-full min-h-[100vh] md:min-h-[90vh] flex flex-col items-center justify-center py-16 md:py-20 px-4 md:px-12 lg:px-24">
+                                <section className="story-chapter relative w-full min-h-[100vh] md:min-h-[90vh] flex flex-col items-center justify-center py-16 md:py-20 px-4 md:px-12 lg:px-24 overflow-hidden">
                                     <div className="w-full max-w-[1800px] mx-auto flex flex-col md:grid md:grid-cols-2 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-16 md:items-center">
                                         
                                         {/* Image 1 (Left Desktop, Top Mobile) */}
                                         {chunk[0] && (
-                                            <div 
+                                            <motion.div 
+                                                custom={-1}
+                                                initial="hidden"
+                                                whileInView="visible"
+                                                viewport={{ once: false, amount: 0.1 }}
+                                                variants={imgVariants}
                                                 className={`story-img-1 w-[85%] mr-auto md:w-full md:col-span-1 lg:col-span-3 lg:col-start-2 relative ${getOrientationAspect(chunk[0].src, 'aspect-[4/5] md:aspect-[3/4]')} rounded-[16px] md:rounded-[24px] overflow-hidden cursor-pointer shadow-[0_20px_50px_rgba(0,0,0,0.4)] group will-change-transform z-10`}
                                                 onClick={() => {
                                                     const imgIdx = uniqueImages.findIndex(i => i.src === chunk[0].src);
@@ -232,14 +234,20 @@ export default function CinematicStoryboardPage({ subcategory }: { subcategory: 
                                                 <img 
                                                     src={chunk[0].src} 
                                                     alt="Cinematic Detail" 
+                                                    loading="lazy"
                                                     className="w-full h-full object-cover transition-all duration-700 ease-out md:group-hover:scale-[1.03] md:group-hover:brightness-105"
                                                 />
-                                            </div>
+                                            </motion.div>
                                         )}
 
                                         {/* Image 2 (Center Hero Desktop, Middle Mobile) */}
                                         {chunk[1] && (
-                                            <div 
+                                            <motion.div 
+                                                custom={0}
+                                                initial="hidden"
+                                                whileInView="visible"
+                                                viewport={{ once: false, amount: 0.1 }}
+                                                variants={imgVariants}
                                                 className={`story-img-2 w-[95%] mx-auto -mt-16 md:mt-0 md:w-full col-span-1 lg:col-span-4 relative ${getOrientationAspect(chunk[1].src, 'aspect-[3/4] md:aspect-[4/5]')} rounded-[16px] md:rounded-[28px] overflow-hidden cursor-pointer shadow-[0_30px_60px_rgba(0,0,0,0.7)] group will-change-transform z-20`}
                                                 onClick={() => {
                                                     const imgIdx = uniqueImages.findIndex(i => i.src === chunk[1].src);
@@ -249,15 +257,21 @@ export default function CinematicStoryboardPage({ subcategory }: { subcategory: 
                                                 <img 
                                                     src={chunk[1].src} 
                                                     alt="Cinematic Hero Moment" 
+                                                    loading="lazy"
                                                     className="w-full h-full object-cover transition-all duration-700 ease-out md:group-hover:scale-[1.03] md:group-hover:brightness-105"
                                                 />
-                                            </div>
+                                            </motion.div>
                                         )}
 
                                         {/* Image 3 (Right Desktop, Bottom Mobile) */}
                                         {chunk[2] && (
-                                            <div 
-                                                className={`story-img-3 w-[85%] ml-auto -mt-16 md:mt-0 md:w-full lg:col-span-3 relative ${getOrientationAspect(chunk[2].src, 'aspect-[4/5] md:aspect-[3/4]')} rounded-[16px] md:rounded-[24px] overflow-hidden cursor-pointer shadow-[0_20px_50px_rgba(0,0,0,0.4)] group will-change-transform z-10`}
+                                            <motion.div 
+                                                custom={1}
+                                                initial="hidden"
+                                                whileInView="visible"
+                                                viewport={{ once: false, amount: 0.1 }}
+                                                variants={imgVariants}
+                                                className={`story-img-3 w-[85%] ml-auto -mt-16 md:mt-0 md:w-full lg:col-span-3 lg:col-end-12 relative ${getOrientationAspect(chunk[2].src, 'aspect-[4/5] md:aspect-[3/4]')} rounded-[16px] md:rounded-[24px] overflow-hidden cursor-pointer shadow-[0_20px_50px_rgba(0,0,0,0.4)] group will-change-transform z-10`}
                                                 onClick={() => {
                                                     const imgIdx = uniqueImages.findIndex(i => i.src === chunk[2].src);
                                                     setLightboxIndex(imgIdx);
@@ -266,9 +280,10 @@ export default function CinematicStoryboardPage({ subcategory }: { subcategory: 
                                                 <img 
                                                     src={chunk[2].src} 
                                                     alt="Cinematic Detail" 
+                                                    loading="lazy"
                                                     className="w-full h-full object-cover transition-all duration-700 ease-out md:group-hover:scale-[1.03] md:group-hover:brightness-105"
                                                 />
-                                            </div>
+                                            </motion.div>
                                         )}
                                     </div>
                                 </section>
