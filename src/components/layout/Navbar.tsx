@@ -425,7 +425,7 @@ const Navbar = () => {
 
                         {/* CTA Button (Desktop only) */}
                         <motion.div layout transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }} className="hidden lg:block pl-1">
-                            <LuxuryBookButton onClick={() => window.location.href = 'tel:+918994442768'} />
+                            <LuxuryBookButton onClick={() => window.location.href = 'tel:+919894442768'} />
                         </motion.div>
 
                         {/* Mobile Menu Toggle Button: Toggles menu open and close */}
@@ -565,7 +565,7 @@ const Navbar = () => {
                                     onClick={() => {
                                         setIsMobileMenuOpen(false);
                                         setTimeout(() => {
-                                            window.location.href = 'tel:+918994442768';
+                                            window.location.href = 'tel:+919894442768';
                                         }, 320);
                                     }}
                                 />

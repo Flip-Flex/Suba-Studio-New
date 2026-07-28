@@ -103,7 +103,7 @@ const CoupleHero = () => {
                         Explore Story
                     </button>
                     <button 
-                        onClick={() => window.location.href = 'tel:+918994442768'}
+                        onClick={() => window.location.href = 'tel:+919894442768'}
                         className="px-10 py-4 bg-transparent border border-white/30 text-white text-sm uppercase tracking-widest font-semibold hover:border-white transition-colors duration-500 rounded-full"
                     >
                         Book Your Session

@@ -96,8 +96,8 @@ export const StickyServicesScroll: React.FC = () => {
 
     mm.add(
       {
-        isMobile: "(max-width: 767px)",
-        isDesktop: "(min-width: 768px)",
+        isMobile: "(max-width: 1023px)",
+        isDesktop: "(min-width: 1024px)",
       },
       (context) => {
         const { isMobile } = context.conditions as { isMobile: boolean };
@@ -204,16 +204,16 @@ export const StickyServicesScroll: React.FC = () => {
             </span>
           </div>
 
-          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[4rem] font-serif font-bold text-gray-950 tracking-tight leading-[1.08] mb-1 sm:mb-5">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[4rem] font-serif font-bold text-gray-950 tracking-tight leading-[1.08] mb-1 lg:mb-5">
             Expertise In Every Frame
           </h2>
 
-          <p className="hidden sm:block text-sm sm:text-base text-gray-600 font-light leading-relaxed mb-6 sm:mb-8 max-w-xl mx-auto lg:mx-0">
+          <p className="hidden lg:block text-sm sm:text-base text-gray-600 font-light leading-relaxed mb-6 sm:mb-8 max-w-xl mx-auto lg:mx-0">
             Each service is its own chapter. Turn the scroll wheel to slide through our signature editorial experiences, crafted with cinematic luxury and timeless devotion.
           </p>
 
           {/* Dynamic Active Chapter Progress Bar */}
-          <div className="hidden sm:flex flex-col gap-2.5 max-w-xs mx-auto lg:mx-0 pt-4 border-t border-gray-200/80">
+          <div className="hidden lg:flex flex-col gap-2.5 max-w-xs mx-auto lg:mx-0 pt-4 border-t border-gray-200/80">
             <div className="flex items-center justify-between font-serif text-xs font-semibold tracking-[0.25em] uppercase text-gray-500">
               <span>Chapter 0{activeChapter + 1}</span>
               <span className="text-zg-blue font-bold">0{servicesData.length}</span>
@@ -233,7 +233,7 @@ export const StickyServicesScroll: React.FC = () => {
         </div>
 
         {/* RIGHT COLUMN: Breathable, Crisp Sticky Card Stack with Adaptive Smart Image Presentation */}
-        <div className="w-full lg:w-[58%] xl:w-[56%] h-[55vh] sm:h-[68vh] lg:h-[70vh] min-h-[380px] sm:min-h-[430px] relative flex items-center justify-center overflow-visible lg:pr-6 xl:pr-10">
+        <div className="w-full lg:w-[58%] xl:w-[56%] h-[55vh] lg:h-[70vh] min-h-[380px] sm:min-h-[400px] relative flex items-center justify-center overflow-visible lg:pr-6 xl:pr-10">
           {servicesData.map((service, index) => (
             <div
               key={service.id}

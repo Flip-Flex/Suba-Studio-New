@@ -87,12 +87,12 @@ export default function CinematicStoryboardPage({ subcategory }: { subcategory: 
                     gsap.fromTo(img1, 
                         { xPercent: -60, y: 100, rotation: -8, opacity: 0 },
                         { 
-                            xPercent: 0, y: 0, rotation: 0, opacity: 1, ease: "none",
+                            xPercent: 0, y: 0, rotation: 0, opacity: 1, ease: "none", force3D: true,
                             scrollTrigger: {
                                 trigger: img1,
                                 start: "top 95%", 
                                 end: "top 50%", 
-                                scrub: 1
+                                scrub: true
                             }
                         }
                     );
@@ -100,14 +100,14 @@ export default function CinematicStoryboardPage({ subcategory }: { subcategory: 
                 
                 if (img2) {
                     gsap.fromTo(img2, 
-                        { xPercent: 60, y: 100, rotation: 8, opacity: 0, filter: "blur(10px)" },
+                        { xPercent: 60, y: 100, rotation: 8, opacity: 0 },
                         { 
-                            xPercent: 0, y: 0, rotation: 0, opacity: 1, filter: "blur(0px)", ease: "none",
+                            xPercent: 0, y: 0, rotation: 0, opacity: 1, ease: "none", force3D: true,
                             scrollTrigger: {
                                 trigger: img2,
                                 start: "top 95%",
                                 end: "top 50%",
-                                scrub: 1
+                                scrub: true
                             }
                         }
                     );
@@ -117,35 +117,18 @@ export default function CinematicStoryboardPage({ subcategory }: { subcategory: 
                     gsap.fromTo(img3, 
                         { xPercent: -60, y: 100, rotation: -8, opacity: 0 },
                         { 
-                            xPercent: 0, y: 0, rotation: 0, opacity: 1, ease: "none",
+                            xPercent: 0, y: 0, rotation: 0, opacity: 1, ease: "none", force3D: true,
                             scrollTrigger: {
                                 trigger: img3,
                                 start: "top 95%",
                                 end: "top 50%",
-                                scrub: 1
+                                scrub: true
                             }
                         }
                     );
                 }
 
-                // Subtle Parallax while scrolling through the section
-                gsap.to(img1, {
-                    yPercent: -10, // Side images move faster
-                    ease: "none",
-                    scrollTrigger: { trigger: chapter, start: "top bottom", end: "bottom top", scrub: true }
-                });
-                
-                gsap.to(img2, {
-                    yPercent: -5, // Center image moves slower
-                    ease: "none",
-                    scrollTrigger: { trigger: chapter, start: "top bottom", end: "bottom top", scrub: true }
-                });
 
-                gsap.to(img3, {
-                    yPercent: -15, // Side images move faster
-                    ease: "none",
-                    scrollTrigger: { trigger: chapter, start: "top bottom", end: "bottom top", scrub: true }
-                });
             });
 
             // 2. Full-Screen Quote Parallax & Fade-in
@@ -320,14 +303,14 @@ export default function CinematicStoryboardPage({ subcategory }: { subcategory: 
                 </main>
 
                 {/* Final CTA Section */}
-                <section className="relative z-20 w-full min-h-[50vh] md:min-h-[60vh] bg-[#050505] text-white flex flex-col items-center justify-center py-20 md:py-32 px-6 border-t border-white/5 mt-12">
+                <section className="relative z-20 w-full min-h-screen bg-[#050505] text-white flex flex-col items-center justify-center py-20 md:py-32 px-6 border-t border-white/5">
                     <div className="max-w-2xl text-center">
                         <span className="block font-poppins text-[10px] md:text-xs tracking-[0.4em] uppercase text-[#D4AF37] mb-6 md:mb-8">{content.whyChooseTitle}</span>
                         <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl leading-tight mb-6 md:mb-8">Ready to Tell Your Story?</h2>
                         <p className="font-poppins text-white/60 mb-10 md:mb-12 max-w-lg mx-auto text-sm md:text-base leading-relaxed px-4">
                             {content.whyChooseText}
                         </p>
-                        <a href="tel:+918994442768" className="inline-block px-8 py-4 md:px-10 md:py-5 bg-transparent border border-white/20 hover:border-[#D4AF37] hover:text-[#D4AF37] transition-all duration-500 font-poppins text-xs md:text-sm tracking-widest uppercase hover:bg-[#D4AF37]/5 cursor-pointer">
+                        <a href="tel:+919894442768" className="inline-block px-8 py-4 md:px-10 md:py-5 bg-transparent border border-white/20 hover:border-[#D4AF37] hover:text-[#D4AF37] transition-all duration-500 font-poppins text-xs md:text-sm tracking-widest uppercase hover:bg-[#D4AF37]/5 cursor-pointer">
                             Book Subha Studios
                         </a>
                     </div>

@@ -324,7 +324,7 @@ const CouplePortraitsPage: React.FC<CouplePortraitsPageProps> = () => {
                             <ArrowRight size={14} />
                         </button>
                         <button 
-                            onClick={() => window.location.href = 'tel:+918994442768'}
+                            onClick={() => window.location.href = 'tel:+919894442768'}
                             className="px-8 py-3.5 rounded-full bg-white/5 backdrop-blur-md border border-white/20 text-white font-semibold uppercase text-xs tracking-[0.2em] hover:bg-white hover:text-black transition-all duration-400"
                         >
                             Book Session
@@ -528,7 +528,7 @@ const CouplePortraitsPage: React.FC<CouplePortraitsPageProps> = () => {
 
                     <div className="flex flex-col sm:flex-row gap-6 items-center justify-center">
                         <button 
-                            onClick={() => window.location.href = 'tel:+918994442768'}
+                            onClick={() => window.location.href = 'tel:+919894442768'}
                             className="px-10 py-4 rounded-full bg-[#D4AF37] text-black font-bold uppercase text-xs tracking-[0.2em] hover:bg-white transition-colors duration-400 shadow-[0_15px_40px_rgba(212,175,55,0.3)]"
                         >
                             Call Us: +91 89944 42768

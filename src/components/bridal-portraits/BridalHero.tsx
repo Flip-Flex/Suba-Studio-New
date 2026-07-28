@@ -122,7 +122,7 @@ const BridalHero: React.FC<BridalHeroProps> = ({ image }) => {
           <div className="flex flex-col sm:flex-row flex-wrap gap-4">
             {/* Explore Gallery button removed as requested */}
             <button 
-              onClick={() => window.location.href = 'tel:+918994442768'}
+              onClick={() => window.location.href = 'tel:+919894442768'}
               className="hero-btn group relative px-8 py-4 touch-target active:scale-95 transition-transform duration-300 bg-white/5 backdrop-blur-md overflow-hidden rounded-none w-full sm:w-auto border border-white/10 hover:border-white/30"
             >
               <div className="absolute inset-0 w-full h-full bg-white transform scale-x-0 origin-left transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-x-100" />

@@ -3,14 +3,15 @@ import gsap from 'gsap';
 import { MoveDown } from 'lucide-react';
 
 const quoteWords = [
-  { text: "EVERY", isAccent: false },
-  { text: "LOVE", isAccent: true },
+  { text: "CAPTURING", isAccent: false },
+  { text: "TIMELESS", isAccent: true },
+  { text: "WEDDINGS", isAccent: true },
+  { text: "AND", isAccent: false },
+  { text: "CELEBRATIONS,", isAccent: false },
+  { text: "ONE", isAccent: false },
   { text: "STORY", isAccent: true },
-  { text: "DESERVES", isAccent: false },
-  { text: "TO", isAccent: false },
-  { text: "BE", isAccent: false },
-  { text: "REMEMBERED", isAccent: false },
-  { text: "FOREVER.", isAccent: false },
+  { text: "AT A", isAccent: false },
+  { text: "TIME.", isAccent: false },
 ];
 
 export const HeroQuote: React.FC = () => {
@@ -35,7 +36,7 @@ export const HeroQuote: React.FC = () => {
 
       // 2. Set initial hidden state for every word span
       gsap.set('.word-inner', {
-        y: 20, // Smaller Y offset for smaller text
+        x: 150, // Come from the right (off screen)
         opacity: 0,
         filter: 'blur(8px)',
         scale: 0.98,
@@ -44,7 +45,7 @@ export const HeroQuote: React.FC = () => {
 
       // 3. Entrance after short 300ms delay
       gsap.to('.word-inner', {
-        y: 0,
+        x: 0,
         opacity: 1,
         filter: 'blur(0px)',
         scale: 1,
@@ -172,7 +173,7 @@ export const HeroQuote: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="absolute inset-0 z-10 flex flex-col items-start justify-end pt-24 pb-24 sm:pb-16 md:pb-20 lg:pb-32 px-6 sm:px-12 md:px-20 pointer-events-none select-none overflow-hidden"
+      className="absolute inset-0 z-10 flex flex-col items-end justify-end pt-24 pb-24 sm:pb-16 md:pb-20 lg:pb-32 px-6 sm:px-12 md:px-20 pointer-events-none select-none overflow-hidden"
     >
       {/* Soft Dark Overlay for Readability over Hero Video */}
       <div
@@ -181,11 +182,11 @@ export const HeroQuote: React.FC = () => {
       />
 
       {/* Parallax & Scroll Wrapper */}
-      <div ref={quoteWrapperRef} className="relative z-10 w-full max-w-7xl text-left">
+      <div ref={quoteWrapperRef} className="relative z-10 w-full max-w-7xl text-right">
         {/* Mouse Parallax Inner Container */}
-        <div ref={quoteRef} className="flex justify-start items-start overflow-hidden px-2">
+        <div ref={quoteRef} className="flex justify-end items-end overflow-hidden px-2">
           
-          <div className="flex flex-col justify-start items-start gap-0">
+          <div className="flex flex-col justify-end items-end gap-0">
             {quoteWords.map((word, wordIndex) => (
               <span
                 key={wordIndex}

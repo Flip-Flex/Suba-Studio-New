@@ -73,7 +73,7 @@ const BookStorySection = () => {
         
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
           <button 
-            onClick={() => window.location.href = 'tel:+918994442768'}
+            onClick={() => window.location.href = 'tel:+919894442768'}
             className="w-full sm:w-auto px-10 py-4 bg-[#D4AF37] text-white font-sans uppercase tracking-widest text-sm hover:bg-white hover:text-black transition-colors duration-500 rounded-sm"
           >
             Book Your Story

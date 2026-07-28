@@ -12,9 +12,7 @@ const Footer = () => {
                     {/* Brand */}
                     <div className="footer-col space-y-6">
                         <div className="flex items-center gap-2">
-                            <div className="bg-[#102f76] p-2 rounded text-white font-black text-xs">
-                                SS
-                            </div>
+                            <img src="/LOGO.png" alt="Suba Studios Logo" className="h-16 w-auto object-contain brightness-0 invert" />
                             <h2 className="text-2xl font-serif font-bold tracking-tighter">SUBA STUDIOS</h2>
                         </div>
                         <p className="text-white/60 leading-relaxed text-sm">

@@ -77,7 +77,7 @@ const Services = () => {
                         </p>
                         <Button
                             className="bg-zg-blue hover:bg-zg-blue/90 text-white px-10 py-6 rounded-full text-lg"
-                            onClick={() => window.location.href = 'tel:+918994442768'}
+                            onClick={() => window.location.href = 'tel:+919894442768'}
                         >
                             Get a Quote
                         </Button>

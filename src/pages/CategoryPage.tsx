@@ -152,7 +152,7 @@ const CategoryPage = () => {
                                         </p>
                                         <Button
                                             className="bg-transparent border border-[#b38b2d] text-[#b38b2d] hover:bg-[#b38b2d] hover:text-white rounded-none px-8 py-6 uppercase tracking-widest text-sm font-semibold transition-all duration-300"
-                                            onClick={() => window.location.href = 'tel:+918994442768'}
+                                            onClick={() => window.location.href = 'tel:+919894442768'}
                                         >
                                             Book This Service
                                         </Button>

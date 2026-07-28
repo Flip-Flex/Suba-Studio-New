@@ -61,7 +61,7 @@ const BookYourStory: React.FC<Props> = ({ image }) => {
 
         <div className="flex flex-col sm:flex-row gap-6">
           <button 
-            onClick={() => window.location.href = 'tel:+918994442768'}
+            onClick={() => window.location.href = 'tel:+919894442768'}
             className="group relative px-10 py-5 bg-[#D4AF37] overflow-hidden rounded-none border border-[#D4AF37]"
           >
             <div className="absolute inset-0 w-full h-full bg-white transform scale-x-0 origin-left transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-x-100" />

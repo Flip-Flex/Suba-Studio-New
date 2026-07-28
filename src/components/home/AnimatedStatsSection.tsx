@@ -240,7 +240,7 @@ export const AnimatedStatsSection: React.FC = () => {
                 {/* Animated Number Counter (`tabular-nums` prevents width shifts) */}
                 <span
                   ref={(el) => (numberRefs.current[index] = el)}
-                  className="relative z-10 text-5xl sm:text-6xl font-serif font-bold text-white tracking-tight tabular-nums inline-block font-bodoni"
+                  className="relative z-10 text-5xl sm:text-6xl font-poppins font-bold text-white tracking-tight tabular-nums inline-block"
                 >
                   0{stat.suffix}
                 </span>

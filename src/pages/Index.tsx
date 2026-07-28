@@ -111,27 +111,27 @@ const Index = () => {
 
       {/* About Section */}
       <section id="about" className="py-16 md:py-24 container mx-auto px-6">
-        <div className="flex flex-col md:flex-row gap-10 md:gap-16 items-center">
-          <div className="w-full md:w-[30%]">
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
+          <div className="w-full lg:w-[30%]">
             <Reveal>
               <div className="relative group max-w-xs mx-auto md:max-w-none flex items-center justify-center p-4">
                 <img src="/LOGO.png" alt="Suba Studios Logo" className="relative w-full h-auto object-contain" />
               </div>
             </Reveal>
           </div>
-          <div className="w-full md:w-[70%] space-y-6">
+          <div className="w-full lg:w-[70%] space-y-6">
             <Reveal>
-              <span className="text-zg-blue font-serif font-bold tracking-widest text-xs uppercase mb-2 block text-center md:text-left">About Us</span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-center md:text-left">Welcome to Suba Studios!</h2>
+              <span className="text-zg-blue font-serif font-bold tracking-widest text-xs uppercase mb-2 block text-center lg:text-left">About Us</span>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-center lg:text-left">Welcome to Suba Studios!</h2>
             </Reveal>
             <Reveal delay={200}>
-              <p className="text-base sm:text-lg text-gray-600 leading-relaxed text-center md:text-left">
+              <p className="text-base sm:text-lg text-gray-600 leading-relaxed text-center lg:text-left">
                 Suba Studios is considered to be the best place for visual storytelling and is among the top wedding photography studios in the country. Our team of wedding photographers is here to assist you in having a meaningful, stress-free, and real event while uniquely documenting your love.
               </p>
-              <p className="text-sm sm:text-base text-gray-600 leading-relaxed mt-4 text-center md:text-left">
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed mt-4 text-center lg:text-left">
                 We want to be available for you all day long and that includes from the get go. During the wedding photoshoot, we give our best to help the couple with different wedding poses. We have written hundreds of original love stories using our expertise in photography all around the world.
               </p>
-              <div className="pt-6 flex justify-center md:justify-start">
+              <div className="pt-6 flex justify-center lg:justify-start">
                 <Button variant="link" className="p-0 text-zg-blue font-bold text-lg group touch-target" onClick={() => navigate('/about')}>
                   Learn More About Us <ArrowRight size={18} className="ml-2 group-hover:translate-x-2 transition-transform" />
                 </Button>
@@ -153,7 +153,7 @@ const Index = () => {
             </div>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
             <Reveal delay={100}>
               <div 
                 className="group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4 rounded-2xl transition-all duration-500 ease-out md:hover:-translate-y-[6px] md:hover:scale-[1.02] md:hover:shadow-xl"

@@ -18,7 +18,7 @@ const Contact = () => {
                     day an event of your lifetime using our digital eye.
                 </p>
                 <div className="mb-12">
-                    <LuxuryBookButton onClick={() => window.location.href = 'tel:+918994442768'} />
+                    <LuxuryBookButton onClick={() => window.location.href = 'tel:+919894442768'} />
                 </div>
 
                 {/* Call Us Section */}
@@ -28,7 +28,7 @@ const Contact = () => {
                     </h2>
 
                     <a
-                        href="tel:+918994442768"
+                        href="tel:+919894442768"
                         className="text-3xl font-bold hover:text-zg-blue transition-colors duration-300"
                     >
                         +91 89944 42768
