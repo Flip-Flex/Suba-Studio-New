@@ -93,11 +93,11 @@ export default function CinematicStoryboardPage({ subcategory }: { subcategory: 
     const content = categoryData[subcategory];
     
     // Combine hero, collage, and album images into a single flat list for the storyboard
-    // We map them to the format the Lightbox expects { src: string }
+    // We map them to the full HinduWeddingImage format the Lightbox expects
     const allImages = [
-        ...(content?.heroImage && !content.heroImage.endsWith('.mp4') ? [{ src: content.heroImage }] : []),
-        ...(content?.collageImages ? content.collageImages.filter(img => !img.endsWith('.mp4')).map(img => ({ src: img })) : []),
-        ...(content?.albums ? content.albums.filter(album => album.image && !album.image.endsWith('.mp4')).map(album => ({ src: album.image })) : [])
+        ...(content?.heroImage && !content.heroImage.endsWith('.mp4') ? [{ src: content.heroImage, width: 1080, height: 1350, orientation: 'portrait' as const }] : []),
+        ...(content?.collageImages ? content.collageImages.filter(img => !img.endsWith('.mp4')).map(img => ({ src: img, width: 1080, height: 1350, orientation: 'portrait' as const })) : []),
+        ...(content?.albums ? content.albums.filter(album => album.image && !album.image.endsWith('.mp4')).map(album => ({ src: album.image, width: 1080, height: 1350, orientation: 'portrait' as const })) : [])
     ];
 
     // Remove duplicates just in case
