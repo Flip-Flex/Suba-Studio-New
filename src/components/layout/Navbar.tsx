@@ -421,7 +421,7 @@ const Navbar = () => {
                     </div>
 
                     {/* Right Section: Nav links on desktop, Hamburger button always visible on right */}
-                    <div className={`flex items-center z-50 ${isSplitLayout ? 'flex-1 justify-between pl-8 lg:pl-12 xl:pl-16' : 'shrink-0 ml-auto justify-end'} gap-1 sm:gap-1.5`}>
+                    <div className={`flex items-center z-50 ${isSplitLayout ? 'lg:flex-1 lg:justify-between lg:pl-12 xl:pl-16 shrink-0 ml-auto justify-end' : 'shrink-0 ml-auto justify-end'} gap-1 sm:gap-1.5`}>
                         {!isSplitLayout && (
                             <div className="hidden lg:flex items-center gap-1 xl:gap-3">
                                 {leftNavItems.map(renderDesktopNavItem)}
