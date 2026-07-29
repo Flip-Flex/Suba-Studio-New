@@ -22,8 +22,8 @@ export const AdaptiveImage: React.FC<AdaptiveImageProps> = ({
   if (!metadata) {
     console.warn(`No metadata found for image: ${src}`);
     return (
-      <div className={`relative w-full h-full overflow-hidden ${containerClassName}`}>
-        <img src={src} alt={alt} className={`w-full h-full object-cover ${imageClassName}`} {...props} />
+      <div className={`relative w-full overflow-hidden ${containerClassName}`}>
+        <img src={src} alt={alt} className={`w-full h-auto object-cover ${imageClassName}`} {...props} />
       </div>
     );
   }
