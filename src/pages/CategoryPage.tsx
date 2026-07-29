@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useLocation } from 'react-router-dom';
 import { Reveal } from "@/components/ui/reveal";
-import { Button } from "@/components/ui/button";
+
 import { AdaptiveImage } from "@/components/ui/adaptive-image";
 import { MasonryGallery } from "@/components/ui/masonry-gallery";
 import { categoryData, defaultContent, CategoryContent } from '@/data/categoryContent';
@@ -158,199 +158,6 @@ const CategoryPage = () => {
                 
             </section>
 
-            {/* Content Section */}
-            {!isVideoRoute && !isPortfolio && (
-                <section className="py-24 bg-[#f3f3f3]">
-                    <div className="container mx-auto px-6">
-                        <div className={`flex flex-col lg:flex-row gap-16 items-start`}>
-                            {/* Left Side */}
-                            <div className="w-full lg:w-1/2 space-y-10">
-                                <Reveal>
-                                    <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#0f3d2e] leading-tight">About This Style</h2>
-                                    <p className="text-gray-600 leading-relaxed text-lg mt-6 font-light">
-                                        {content.description}
-                                    </p>
-                                </Reveal>
-
-                                <Reveal delay={200}>
-                                    <div className="bg-white p-10 rounded-2xl border border-gray-100 shadow-sm relative overflow-hidden">
-                                        <div className="absolute top-0 left-0 w-1 h-full bg-[#0f3d2e] opacity-20"></div>
-                                        <h3 className="text-2xl font-serif font-bold mb-4 text-[#0f3d2e]">{content.whyChooseTitle}</h3>
-                                        <p className="text-gray-600 leading-relaxed mb-8">
-                                            {content.whyChooseText}
-                                        </p>
-                                        <Button
-                                            className="bg-transparent border border-[#b38b2d] text-[#b38b2d] hover:bg-[#b38b2d] hover:text-white rounded-none px-8 py-6 uppercase tracking-widest text-sm font-semibold transition-all duration-300"
-                                            onClick={() => window.location.href = 'tel:+919894442768'}
-                                        >
-                                            Book This Service
-                                        </Button>
-                                    </div>
-                                </Reveal>
-                            </div>
-
-                            {/* Right Side - Collage */}
-                            <div className="w-full lg:w-1/2">
-                                <div className={`grid gap-8 ${isBridalPortraits ? 'lg:grid-cols-[1.5fr_1fr] grid-cols-1' : 'grid-cols-2'} items-stretch`}>
-                                    {isBridalPortraits && content.collageImages && content.collageImages.length >= 3 ? (
-                                        <>
-                                            {/* Left side: one large vertical portrait image taking 60% width */}
-                                            <div className="col-span-1">
-                                                <Reveal delay={100} className="h-full w-full">
-                                                    <div className="rounded-[24px] overflow-hidden h-full w-full">
-                                                        <img
-                                                            src={content.collageImages[0]}
-                                                            alt="Bridal portrait main"
-                                                            className="w-full h-full object-cover object-center hover:scale-110 transition-transform duration-[1.5s]"
-                                                        />
-                                                    </div>
-                                                </Reveal>
-                                            </div>
-
-                                            {/* Right side: two landscape images stacked vertically, each taking equal height */}
-                                            <div className="col-span-1 grid grid-rows-2 gap-8 h-full">
-                                                <Reveal delay={200} className="h-full">
-                                                    <div className="rounded-[24px] overflow-hidden h-full aspect-video lg:aspect-auto">
-                                                        <img
-                                                            src={content.collageImages[1]}
-                                                            alt="Bridal detail top"
-                                                            className="w-full h-full object-cover object-center hover:scale-110 transition-transform duration-[1.5s]"
-                                                        />
-                                                    </div>
-                                                </Reveal>
-                                                <Reveal delay={300} className="h-full">
-                                                    <div className="rounded-[24px] overflow-hidden h-full aspect-video lg:aspect-auto">
-                                                        <img
-                                                            src={content.collageImages[2]}
-                                                            alt="Bridal detail bottom"
-                                                            className="w-full h-full object-cover object-center hover:scale-110 transition-transform duration-[1.5s]"
-                                                        />
-                                                    </div>
-                                                </Reveal>
-                                            </div>
-                                        </>
-                                    ) : content.collageImages && content.collageImages.length > 0 ? (
-                                        <>
-                                            {/* Main Large Slot */}
-                                            <div className={content.collageImages.length === 1 ? "col-span-2" : "col-span-2"}>
-                                                <Reveal delay={100}>
-                                                    <div className="rounded-[20px] overflow-hidden">
-                                                        {content.collageImages[0]?.endsWith('.mp4') ? (
-                                                            <video
-                                                                src={content.collageImages[0]}
-                                                                autoPlay
-                                                                loop
-                                                                muted
-                                                                playsInline
-                                                                className="w-full h-full object-cover object-center rounded-[20px] hover:scale-105 transition-transform duration-700"
-                                                            />
-                                                        ) : (
-                                                            <AdaptiveImage
-                                                                src={content.collageImages[0]}
-                                                                alt="Highlight"
-                                                                imageClassName="hover:scale-105 transition-transform duration-700"
-                                                            />
-                                                        )}
-                                                    </div>
-                                                </Reveal>
-                                            </div>
-
-                                            {/* Slot 2 */}
-                                            {content.collageImages.length > 1 && (
-                                                <div className="col-span-1">
-                                                    <Reveal delay={200}>
-                                                        <div className="rounded-[20px] overflow-hidden">
-                                                            {content.collageImages[1]?.endsWith('.mp4') ? (
-                                                                <video
-                                                                    src={content.collageImages[1]}
-                                                                    autoPlay
-                                                                    loop
-                                                                    muted
-                                                                    playsInline
-                                                                    className="w-full h-full object-cover object-center rounded-[20px] hover:scale-105 transition-transform duration-700"
-                                                                />
-                                                            ) : (
-                                                                <AdaptiveImage
-                                                                    src={content.collageImages[1]}
-                                                                    alt="Detail"
-                                                                    imageClassName="hover:scale-105 transition-transform duration-700"
-                                                                />
-                                                            )}
-                                                        </div>
-                                                    </Reveal>
-                                                </div>
-                                            )}
-
-                                            {/* Slot 3 */}
-                                            {content.collageImages.length > 2 && (
-                                                <div className="col-span-1">
-                                                    <Reveal delay={300}>
-                                                        <div className="rounded-[20px] overflow-hidden">
-                                                            {content.collageImages[2]?.endsWith('.mp4') ? (
-                                                                <video
-                                                                    src={content.collageImages[2]}
-                                                                    autoPlay
-                                                                    loop
-                                                                    muted
-                                                                    playsInline
-                                                                    className="w-full h-full object-cover object-center rounded-[20px] hover:scale-105 transition-transform duration-700"
-                                                                />
-                                                            ) : (
-                                                                <AdaptiveImage
-                                                                    src={content.collageImages[2]}
-                                                                    alt="Portrait"
-                                                                    imageClassName="hover:scale-105 transition-transform duration-700"
-                                                                />
-                                                            )}
-                                                        </div>
-                                                    </Reveal>
-                                                </div>
-                                            )}
-                                        </>
-                                    ) : (
-                                        /* Fallback to album images if no collage images are defined */
-                                        <>
-                                            <div className="col-span-2">
-                                                <Reveal delay={100}>
-                                                    <div className="rounded-[20px] overflow-hidden shadow-lg">
-                                                        {content.albums[0]?.image?.endsWith('.mp4') ? (
-                                                            <video src={content.albums[0]?.image} autoPlay loop muted playsInline className="w-full h-auto rounded-[20px] object-cover hover:scale-105 transition-transform duration-700" />
-                                                        ) : (
-                                                            <AdaptiveImage src={content.albums[0]?.image} alt="Album 1" imageClassName="hover:scale-105 transition-transform duration-700" />
-                                                        )}
-                                                    </div>
-                                                </Reveal>
-                                            </div>
-                                            <div className="col-span-1">
-                                                <Reveal delay={200}>
-                                                    <div className="rounded-[20px] overflow-hidden shadow-lg">
-                                                        {content.albums[1]?.image?.endsWith('.mp4') ? (
-                                                            <video src={content.albums[1]?.image} autoPlay loop muted playsInline className="w-full h-auto rounded-[20px] object-cover hover:scale-105 transition-transform duration-700" />
-                                                        ) : (
-                                                            <AdaptiveImage src={content.albums[1]?.image} alt="Album 2" imageClassName="hover:scale-105 transition-transform duration-700" />
-                                                        )}
-                                                    </div>
-                                                </Reveal>
-                                            </div>
-                                            <div className="col-span-1">
-                                                <Reveal delay={300}>
-                                                    <div className="rounded-[20px] overflow-hidden shadow-lg">
-                                                        {content.albums[2]?.image?.endsWith('.mp4') ? (
-                                                            <video src={content.albums[2]?.image} autoPlay loop muted playsInline className="w-full h-auto rounded-[20px] object-cover hover:scale-105 transition-transform duration-700" />
-                                                        ) : (
-                                                            <AdaptiveImage src={content.albums[2]?.image} alt="Album 3" imageClassName="hover:scale-105 transition-transform duration-700" />
-                                                        )}
-                                                    </div>
-                                                </Reveal>
-                                            </div>
-                                        </>
-                                    )}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            )}
 
             {isVideoRoute && content.videoList && (
                 <section className="py-24 bg-white">
@@ -415,7 +222,7 @@ const CategoryPage = () => {
                         {isPortfolio ? (
                             <MasonryGrid
                                 items={content.albums}
-                                className="columns-1 sm:columns-2 lg:columns-3"
+                                className="columns-1 sm:columns-2 md:columns-4 lg:columns-4"
                                 gap="2.5rem"
                                 renderItem={(item) => (
                                     <div className="overflow-hidden rounded-none sm:rounded-2xl h-full relative group">
@@ -434,9 +241,9 @@ const CategoryPage = () => {
                                 columns={{
                                     default: 1,
                                     sm: 2,
-                                    md: 3,
-                                    lg: 3,
-                                    xl: (subcategory === 'baby' || subcategory === 'maternity') ? 4 : 3
+                                    md: (subcategory === 'female-model') ? 4 : 3,
+                                    lg: (subcategory === 'female-model') ? 4 : 3,
+                                    xl: (subcategory === 'baby' || subcategory === 'maternity' || subcategory === 'female-model') ? 4 : 3
                                 }}
                                 gap="gap-10 space-y-10"
                             />

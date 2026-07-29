@@ -62,7 +62,7 @@ export const LuxuryBookButton = React.forwardRef<HTMLButtonElement, LuxuryBookBu
         />
         
         {/* Text */}
-        <span className="relative z-10 font-serif font-semibold text-[11px] sm:text-[12px] tracking-[0.16em] uppercase text-white group-hover:text-black transition-all duration-300">
+        <span className="relative z-10 font-serif font-semibold text-[11px] sm:text-[12px] tracking-[0.16em] uppercase text-white group-hover:text-black transition-all duration-300 whitespace-nowrap">
           {text}
         </span>
       </motion.button>

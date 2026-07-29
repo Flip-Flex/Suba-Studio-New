@@ -64,7 +64,7 @@ const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [activeSubMenu, setActiveSubMenu] = useState<string | null>(null);
-    const [isHomeClickAnimating, setIsHomeClickAnimating] = useState(false);
+
     const [mobCenterDelta, setMobCenterDelta] = useState(0);
     
     const location = useLocation();
@@ -134,9 +134,8 @@ const Navbar = () => {
     }, []);
 
     // During the cinematic logo animation, force the navbar to behave perfectly as if it's at the top of the Home page
-    const forceHomeTop = isHomeClickAnimating;
-    const isSplitLayout = forceHomeTop || (isHome && !isScrolled);
-    const isNavbarScrolled = !forceHomeTop && (isScrolled || !isHome);
+    const isSplitLayout = isHome && !isScrolled;
+    const isNavbarScrolled = isScrolled || !isHome;
 
     const handleHomeClick = (e?: React.MouseEvent) => {
         if (e) e.preventDefault();
@@ -148,64 +147,7 @@ const Navbar = () => {
             return;
         }
         
-        if (isHomeClickAnimating) return;
-
-        // Execute state updates together immediately
         navigate('/');
-        setIsHomeClickAnimating(true);
-
-        setTimeout(() => {
-            let animationsCompleted = 0;
-            const checkCompletion = () => {
-                animationsCompleted++;
-                if (animationsCompleted >= (window.innerWidth < 1024 ? 1 : 1)) {
-                    setIsHomeClickAnimating(false);
-                }
-            };
-
-            if (logoRef.current) {
-                gsap.killTweensOf(logoRef.current);
-                gsap.fromTo(
-                    logoRef.current,
-                    {
-                        x: window.innerWidth / 2 + 150,
-                        scale: 0.86,
-                        opacity: 0,
-                    },
-                    {
-                        x: 0,
-                        scale: 1,
-                        opacity: 1,
-                        duration: 1.1,
-                        ease: 'power4.out',
-                        onComplete: checkCompletion
-                    }
-                );
-            } else {
-                setIsHomeClickAnimating(false);
-            }
-
-            // Also smoothly animate mobile logo if on mobile view
-            if (logoMobRef.current && window.innerWidth < 1024) {
-                gsap.killTweensOf(logoMobRef.current);
-                gsap.fromTo(
-                    logoMobRef.current,
-                    {
-                        x: window.innerWidth / 2 + 150,
-                        scale: 0.86,
-                        opacity: 0,
-                    },
-                    {
-                        x: mobCenterDelta,
-                        scale: 1,
-                        opacity: 1,
-                        duration: 1.1,
-                        ease: 'power4.out',
-                        onComplete: checkCompletion
-                    }
-                );
-            }
-        }, 50);
     };
 
     const handleNavClick = (path: string) => {
@@ -250,15 +192,15 @@ const Navbar = () => {
         return (
         <motion.div
             key={item.name}
-            layout={!isHomeClickAnimating}
-            layoutId={isLeftItem && !isHomeClickAnimating ? `desktop-nav-item-${item.name}` : undefined}
+            layout
+            layoutId={isLeftItem ? `desktop-nav-item-${item.name}` : undefined}
             transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
             className="relative group px-1.5 xl:px-2.5 py-1 hover:z-[60]"
             onMouseEnter={() => !item.noDropdown && setActiveSubMenu(item.name)}
             onMouseLeave={() => setActiveSubMenu(null)}
         >
             <button
-                className={`relative flex items-center gap-1 transition-all duration-300 uppercase font-serif font-medium tracking-[0.12em] text-[12px] xl:text-[13px] py-0.5 ${
+                className={`relative flex items-center whitespace-nowrap gap-1 transition-all duration-300 uppercase font-serif font-medium tracking-[0.12em] text-[12px] xl:text-[13px] py-0.5 ${
                     active
                         ? (isNavbarScrolled ? 'text-zg-blue font-semibold' : 'text-white font-semibold')
                         : (isNavbarScrolled ? 'text-gray-900 hover:text-[#D4AF37]' : 'text-white/95 hover:text-[#D4AF37]')
@@ -333,7 +275,7 @@ const Navbar = () => {
                             <div className="flex items-center gap-2 xl:gap-5">
                                 {leftNavItems.map(renderDesktopNavItem)}
                             </div>
-                        ) : isHomeClickAnimating ? null : (
+                        ) : (
                             <motion.div
                                 layout
                                 layoutId="cinematic-brand-logo"
@@ -351,7 +293,7 @@ const Navbar = () => {
                     </div>
 
                     {/* Center Section Wrapper (Desktop Split Layout Logo) */}
-                    {isSplitLayout && !isHomeClickAnimating && (
+                    {isSplitLayout && (
                         <div className="hidden lg:flex items-center justify-center z-40 px-4 shrink-0">
                             <motion.div
                                 layout
@@ -364,23 +306,6 @@ const Navbar = () => {
                                     SUBA STUDIOS
                                 </span>
                             </motion.div>
-                        </div>
-                    )}
-
-                    {/* GSAP Home Click Animation Override Layer (Desktop) */}
-                    {isHomeClickAnimating && (
-                        <div className="hidden lg:flex absolute inset-0 pointer-events-none items-center justify-center z-40 px-16">
-                            <div
-                                ref={logoRef}
-                                onClick={() => handleHomeClick()}
-                                className="pointer-events-auto cursor-pointer select-none py-1 flex items-center justify-center"
-                            >
-                                <span className={`font-serif font-black tracking-[0.15em] xl:tracking-[0.24em] text-lg lg:text-xl xl:text-2xl uppercase transition-colors duration-300 whitespace-nowrap ${
-                                    isNavbarScrolled ? 'text-black' : 'text-white'
-                                }`}>
-                                    SUBA STUDIOS
-                                </span>
-                            </div>
                         </div>
                     )}
 

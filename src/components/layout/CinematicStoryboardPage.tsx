@@ -194,13 +194,12 @@ export default function CinematicStoryboardPage({ subcategory }: { subcategory: 
                     )}
                     
                     <div className="relative z-10 w-full px-4 md:px-8 pt-20 md:pt-24 flex flex-col items-center justify-center h-full">
-                        <p className="text-[#D4AF37] tracking-[0.3em] uppercase text-xs md:text-sm mb-6 font-poppins drop-shadow-md">{content.tagline}</p>
                         <h1 className="text-4xl md:text-6xl lg:text-8xl font-playfair mb-6 leading-tight tracking-tight px-4 drop-shadow-lg">
                             {content.title.split(' Photography')[0]} <br className="md:hidden" />
                             <span className="italic text-white/90">Photography</span>
                         </h1>
-                        <p className="max-w-2xl mx-auto text-white/80 font-inter text-sm md:text-base leading-relaxed font-light px-4 drop-shadow-md">
-                            {content.description}
+                        <p className="text-[#D4AF37] tracking-[0.3em] uppercase text-xs md:text-sm font-poppins drop-shadow-md px-4">
+                            {content.tagline}
                         </p>
                     </div>
                 </section>

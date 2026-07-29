@@ -158,8 +158,7 @@ export const categoryData: Record<string, CategoryContent> = {
             { id: 2, title: "", image: "/Bridal/2.jpg?v=2" },
             { id: 3, title: "", image: "/Bridal/3.jpg?v=2" },
             { id: 4, title: "", image: "/Bridal/5.JPG?v=2" },
-            { id: 5, title: "", image: "/Bridal/15.JPG?v=2" },
-            { id: 6, title: "", image: "/Bridal/20.jpg?v=2" }
+            { id: 5, title: "", image: "/Bridal/15.JPG?v=2" }
         ]
     },
     "couple-portraits": {
@@ -176,6 +175,7 @@ export const categoryData: Record<string, CategoryContent> = {
             { id: 3, title: "", image: "/couple_portrait/b4.JPG?v=2" },
             { id: 4, title: "", image: "/couple_portrait/b6.JPG?v=2" },
             { id: 5, title: "", image: "/couple_portrait/b7.JPG?v=2" },
+
             { id: 6, title: "", image: "/couple_portrait/b8.jpg?v=2" },
             { id: 7, title: "", image: "/couple_portrait/b9.jpg?v=2" },
             { id: 8, title: "", image: "/couple_portrait/b10.JPG?v=2" },

@@ -407,12 +407,7 @@
     "aspectRatio": 1.5,
     "orientation": "landscape"
   },
-  "/Bridal/20.jpg": {
-    "width": 1280,
-    "height": 1920,
-    "aspectRatio": 0.667,
-    "orientation": "portrait"
-  },
+
   "/Bridal/3.jpg": {
     "width": 1920,
     "height": 1280,
@@ -737,6 +732,7 @@
     "aspectRatio": 0.667,
     "orientation": "portrait"
   },
+
   "/couple_portrait/b8.jpg": {
     "width": 1280,
     "height": 1920,

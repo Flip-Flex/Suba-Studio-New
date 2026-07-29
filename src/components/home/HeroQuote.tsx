@@ -3,15 +3,11 @@ import gsap from 'gsap';
 import { MoveDown } from 'lucide-react';
 
 const quoteWords = [
-  { text: "CAPTURING", isAccent: false },
+  { text: "TURNING", isAccent: false },
+  { text: "MOMENTS", isAccent: true },
+  { text: "INTO", isAccent: false },
   { text: "TIMELESS", isAccent: true },
-  { text: "WEDDINGS", isAccent: true },
-  { text: "AND", isAccent: false },
-  { text: "CELEBRATIONS,", isAccent: false },
-  { text: "ONE", isAccent: false },
-  { text: "STORY", isAccent: true },
-  { text: "AT A", isAccent: false },
-  { text: "TIME.", isAccent: false },
+  { text: "STORIES", isAccent: true },
 ];
 
 export const HeroQuote: React.FC = () => {
@@ -36,23 +32,24 @@ export const HeroQuote: React.FC = () => {
 
       // 2. Set initial hidden state for every word span
       gsap.set('.word-inner', {
-        x: 150, // Come from the right (off screen)
+        y: 40,
         opacity: 0,
-        filter: 'blur(8px)',
-        scale: 0.98,
+        rotationX: -45,
+        transformOrigin: "0% 50% -50",
+        filter: 'blur(10px)',
         force3D: true,
       });
 
-      // 3. Entrance after short 300ms delay
+      // 3. Entrance after short delay
       gsap.to('.word-inner', {
-        x: 0,
+        y: 0,
         opacity: 1,
+        rotationX: 0,
         filter: 'blur(0px)',
-        scale: 1,
-        duration: 1.1,
-        ease: 'power4.out',
-        stagger: 0.05, // Faster stagger for single line
-        delay: 0.3,
+        duration: 1.2,
+        ease: 'expo.out',
+        stagger: 0.1,
+        delay: 0.2,
         force3D: true,
       });
 
@@ -173,7 +170,7 @@ export const HeroQuote: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="absolute inset-0 z-10 flex flex-col items-end justify-end pt-24 pb-24 sm:pb-16 md:pb-20 lg:pb-32 px-6 sm:px-12 md:px-20 pointer-events-none select-none overflow-hidden"
+      className="absolute inset-0 z-10 flex flex-col items-center justify-end pt-24 pb-24 sm:pb-16 md:pb-20 lg:pb-32 px-6 sm:px-12 md:px-20 pointer-events-none select-none overflow-hidden"
     >
       {/* Soft Dark Overlay for Readability over Hero Video */}
       <div
@@ -182,18 +179,18 @@ export const HeroQuote: React.FC = () => {
       />
 
       {/* Parallax & Scroll Wrapper */}
-      <div ref={quoteWrapperRef} className="relative z-10 w-full max-w-7xl text-right">
+      <div ref={quoteWrapperRef} className="relative z-10 w-full max-w-7xl text-center">
         {/* Mouse Parallax Inner Container */}
-        <div ref={quoteRef} className="flex justify-end items-end overflow-hidden px-2">
+        <div ref={quoteRef} className="flex justify-center items-center overflow-hidden px-2">
           
-          <div className="flex flex-wrap justify-end items-end gap-x-3 sm:gap-x-4 gap-y-1">
+          <div className="flex flex-wrap justify-center items-center gap-x-3 sm:gap-x-4 gap-y-1">
             {quoteWords.map((word, wordIndex) => (
               <span
                 key={wordIndex}
                 className="inline-block overflow-hidden"
               >
                 <span
-                  className={`word-inner inline-block origin-bottom font-poppins font-bold uppercase tracking-[0.1em] sm:tracking-[0.15em] md:tracking-[0.2em] leading-[0.9] text-[20px] sm:text-[24px] md:text-[32px] lg:text-[40px] transition-colors text-transparent [-webkit-text-stroke-width:1px] md:[-webkit-text-stroke-width:1.5px] ${
+                  className={`word-inner inline-block origin-bottom font-poppins font-bold uppercase tracking-[0.1em] sm:tracking-[0.15em] md:tracking-[0.2em] leading-[0.9] text-[16px] sm:text-[20px] md:text-[26px] lg:text-[32px] transition-colors text-transparent [-webkit-text-stroke-width:1px] md:[-webkit-text-stroke-width:1.5px] ${
                     word.isAccent
                       ? '[-webkit-text-stroke-color:#D4AF37] drop-shadow-[0_2px_12px_rgba(212,175,55,0.4)]'
                       : '[-webkit-text-stroke-color:rgba(255,255,255,0.95)] drop-shadow-[0_4px_16px_rgba(0,0,0,0.5)]'

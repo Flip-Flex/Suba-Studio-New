@@ -224,7 +224,7 @@ const GroomPortraitsPage: React.FC<GroomPortraitsPageProps> = ({ subcategory }) 
           <h2 className="text-5xl md:text-8xl font-serif font-bold uppercase tracking-tighter text-white/10">The Portfolio</h2>
         </div>
         
-        <div className="max-w-[1400px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+        <div className="max-w-[1400px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
           {content.albums.map((album, idx) => {
             const isLandscape = album.image.includes('13.jpg');
             return (
@@ -232,7 +232,7 @@ const GroomPortraitsPage: React.FC<GroomPortraitsPageProps> = ({ subcategory }) 
                 key={idx}
                 src={album.image}
                 onClick={() => openLightbox(album.image)}
-                className={`w-full ${isLandscape ? 'aspect-[3/2] sm:col-span-2 md:col-span-3' : 'aspect-[3/4]'} wall-item`}
+                className={`w-full ${isLandscape ? 'aspect-[3/2] sm:col-span-2 md:col-span-4' : 'aspect-[3/4]'} wall-item`}
               />
             );
           })}
