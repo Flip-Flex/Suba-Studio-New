@@ -6,6 +6,7 @@ import {
   useMotionValue,
   useTransform,
   useSpring,
+  Variants
 } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
@@ -83,7 +84,7 @@ const MasonryGrid = <T,>({
   staggerDelay = 0.1,
 }: MasonryGridProps<T>) => {
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: (index: number) => {
       // Determine if mobile on mount. If window is undefined (SSR), default to mobile false.
       const isMobile = typeof window !== 'undefined' ? window.innerWidth < 640 : false;
@@ -122,7 +123,7 @@ const MasonryGrid = <T,>({
           custom={index}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.1, margin: "100px 0px -100px 0px" }}
+          viewport={{ once: true, amount: 0.1, margin: "100px 0px -100px 0px" }}
           className="mb-0 sm:mb-6 break-inside-avoid"
           variants={itemVariants}
           role="listitem"

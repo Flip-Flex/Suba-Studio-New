@@ -30,7 +30,8 @@ const ThreeDMarquee = ({
 }: ThreeDMarqueeProps) => {
   // Shuffle and duplicate images to ensure the grid is tall enough and random
   const shuffledImages = React.useMemo(() => {
-    const arr = [...images, ...images, ...images]
+    // Use images once to avoid massive GPU lag and DOM node bloat on load
+    const arr = [...images];
     for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [arr[i], arr[j]] = [arr[j], arr[i]];

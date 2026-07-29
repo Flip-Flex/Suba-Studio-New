@@ -18,11 +18,9 @@ import MasonryGrid from "@/components/ui/masonry-grid";
 const CategoryPage = () => {
     const { subcategory } = useParams();
     const { pathname } = useLocation();
-    const [content, setContent] = useState<CategoryContent>(defaultContent);
-
     const isVideoRoute = pathname.includes('/video/');
 
-    useEffect(() => {
+    const content = React.useMemo(() => {
         if (subcategory) {
             const subLower = subcategory.toLowerCase();
             // Try video-specific key first if it's a video route
@@ -32,14 +30,18 @@ const CategoryPage = () => {
                 : categoryData[subLower] ? subLower : Object.keys(categoryData).find(k => subLower.includes(k));
 
             if (key) {
-                setContent(categoryData[key]);
+                return categoryData[key];
             } else {
-                setContent({
+                return {
                     ...defaultContent,
                     title: subcategory.replace(/-/g, ' ').toUpperCase(),
-                });
+                };
             }
         }
+        return defaultContent;
+    }, [subcategory, isVideoRoute]);
+
+    useEffect(() => {
         window.scrollTo(0, 0);
     }, [subcategory, isVideoRoute]);
     
@@ -136,9 +138,9 @@ const CategoryPage = () => {
                         )}
                         <h1 className={isVideoRoute 
                             ? "text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-light mb-6 tracking-wide" 
-                            : "text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-poppins font-bold mb-4 text-white tracking-tight whitespace-nowrap px-4 overflow-hidden text-ellipsis"}>
+                            : "text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-poppins font-bold mb-4 text-white tracking-tight whitespace-nowrap px-4 pb-4 overflow-hidden text-ellipsis"}>
                             {isPortfolio ? (
-                                <TextRoll duration={0.5} getEnterDelay={(i) => i * 0.04}>
+                                <TextRoll key={subcategory} duration={0.5} getEnterDelay={(i) => i * 0.04}>
                                     {content.title}
                                 </TextRoll>
                             ) : (
@@ -445,7 +447,7 @@ const CategoryPage = () => {
             )}
 
             {/* Pagination Controls */}
-            {categoryKeys.length > 1 && (
+            {categoryKeys.length > 1 && !isPortfolio && (
                 <div className="flex justify-between items-center py-12 px-6 border-t border-gray-100 max-w-4xl mx-auto">
                     {prevCategory ? (
                         <Link to={`/category/${prevCategory.id}`} className="group flex flex-col items-start gap-2">
@@ -466,6 +468,22 @@ const CategoryPage = () => {
                     ) : <div />}
                 </div>
             )}
+
+            {/* Final CTA Section */}
+            <section className="relative z-20 w-full min-h-[70vh] bg-[#050505] text-white flex flex-col items-center justify-center py-20 md:py-32 px-6 border-t border-white/5">
+                <Reveal delay={100} className="w-full">
+                    <div className="max-w-2xl text-center mx-auto">
+                        <span className="block font-poppins text-[10px] md:text-xs tracking-[0.4em] uppercase text-[#D4AF37] mb-6 md:mb-8">{content.whyChooseTitle}</span>
+                        <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight mb-6 md:mb-8">Ready to Tell Your Story?</h2>
+                        <p className="font-poppins text-white/60 mb-10 md:mb-12 max-w-lg mx-auto text-sm md:text-base leading-relaxed px-4">
+                            {content.whyChooseText}
+                        </p>
+                        <a href="tel:+919894442768" className="inline-block px-8 py-4 md:px-10 md:py-5 bg-transparent border border-white/20 hover:border-[#D4AF37] hover:text-[#D4AF37] transition-all duration-500 font-poppins text-xs md:text-sm tracking-widest uppercase hover:bg-[#D4AF37]/5 cursor-pointer">
+                            Book Subha Studios
+                        </a>
+                    </div>
+                </Reveal>
+            </section>
         </div>
     );
 };
