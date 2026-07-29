@@ -480,7 +480,7 @@ const BridalPortraitsPage: React.FC<BridalPortraitsPageProps> = () => {
                     </div>
 
                     {/* DESKTOP/TABLET Multi-Column Staggered Grid */}
-                    <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+                    <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 grid-flow-dense gap-8 md:gap-10">
                         {remainingImages.map((img, idx) => {
                             const cleanImg = img.split('?')[0];
                             const meta = imageMetadata[cleanImg as keyof typeof imageMetadata] || imageMetadata[cleanImg.replace(/^\//, '') as keyof typeof imageMetadata];
