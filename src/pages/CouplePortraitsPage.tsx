@@ -314,18 +314,8 @@ const CouplePortraitsPage: React.FC<CouplePortraitsPageProps> = () => {
 
                     <div className="flex flex-col sm:flex-row gap-5 items-center justify-center">
                         <button 
-                            onClick={() => {
-                                const target = document.getElementById('story-section');
-                                target?.scrollIntoView({ behavior: 'smooth' });
-                            }}
-                            className="px-8 py-3.5 rounded-full bg-[#D4AF37] text-black font-semibold uppercase text-xs tracking-[0.2em] hover:bg-white transition-colors duration-400 flex items-center gap-2 shadow-[0_10px_30px_rgba(212,175,55,0.3)]"
-                        >
-                            <span>Explore Stories</span>
-                            <ArrowRight size={14} />
-                        </button>
-                        <button 
                             onClick={() => window.location.href = 'tel:+919894442768'}
-                            className="px-8 py-3.5 rounded-full bg-white/5 backdrop-blur-md border border-white/20 text-white font-semibold uppercase text-xs tracking-[0.2em] hover:bg-white hover:text-black transition-all duration-400"
+                            className="px-8 py-3.5 rounded-full bg-[#D4AF37] text-black font-semibold uppercase text-xs tracking-[0.2em] hover:bg-white transition-colors duration-400 shadow-[0_10px_30px_rgba(212,175,55,0.3)]"
                         >
                             Book Session
                         </button>
