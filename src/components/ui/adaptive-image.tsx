@@ -15,9 +15,9 @@ export const AdaptiveImage: React.FC<AdaptiveImageProps> = ({
   imageClassName = '',
   ...props
 }) => {
-  // Try to find exact match first, then by removing leading slash if needed
-  const metadata = imageMetadata[src as keyof typeof imageMetadata] || 
-                   imageMetadata[src.replace(/^\//, '') as keyof typeof imageMetadata];
+  const cleanSrc = src.split('?')[0];
+  const metadata = imageMetadata[cleanSrc as keyof typeof imageMetadata] || 
+                   imageMetadata[cleanSrc.replace(/^\//, '') as keyof typeof imageMetadata];
 
   if (!metadata) {
     console.warn(`No metadata found for image: ${src}`);

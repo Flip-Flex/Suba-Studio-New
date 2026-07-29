@@ -11,7 +11,8 @@ import imageMetadata from '@/data/imageMetadata.json';
 gsap.registerPlugin(ScrollTrigger);
 
 const getOrientationAspect = (src: string, defaultClass: string) => {
-    const meta = (imageMetadata as Record<string, { width: number; height: number; orientation?: string }>)[src];
+    const cleanSrc = src.split('?')[0];
+    const meta = (imageMetadata as Record<string, { width: number; height: number; orientation?: string }>)[cleanSrc];
     if (meta?.orientation === 'landscape') {
         return "aspect-[4/3] md:aspect-[3/2]";
     }
@@ -95,9 +96,9 @@ export default function CinematicStoryboardPage({ subcategory }: { subcategory: 
     // Combine hero, collage, and album images into a single flat list for the storyboard
     // We map them to the full HinduWeddingImage format the Lightbox expects
     const allImages = [
-        ...(content?.heroImage && !content.heroImage.endsWith('.mp4') ? [{ src: content.heroImage, width: 1080, height: 1350, orientation: 'portrait' as const }] : []),
-        ...(content?.collageImages ? content.collageImages.filter(img => !img.endsWith('.mp4')).map(img => ({ src: img, width: 1080, height: 1350, orientation: 'portrait' as const })) : []),
-        ...(content?.albums ? content.albums.filter(album => album.image && !album.image.endsWith('.mp4')).map(album => ({ src: album.image, width: 1080, height: 1350, orientation: 'portrait' as const })) : [])
+        ...(content?.heroImage && !content.heroImage.endsWith('.mp4') ? [{ src: content.heroImage, width: (imageMetadata as any)[content.heroImage.split('?')[0]]?.width || 1080, height: (imageMetadata as any)[content.heroImage.split('?')[0]]?.height || 1350, orientation: (imageMetadata as any)[content.heroImage.split('?')[0]]?.orientation || 'portrait' }] : []),
+        ...(content?.collageImages ? content.collageImages.filter(img => !img.endsWith('.mp4')).map(img => ({ src: img, width: (imageMetadata as any)[img.split('?')[0]]?.width || 1080, height: (imageMetadata as any)[img.split('?')[0]]?.height || 1350, orientation: (imageMetadata as any)[img.split('?')[0]]?.orientation || 'portrait' })) : []),
+        ...(content?.albums ? content.albums.filter(album => album.image && !album.image.endsWith('.mp4')).map(album => ({ src: album.image, width: (imageMetadata as any)[album.image.split('?')[0]]?.width || 1080, height: (imageMetadata as any)[album.image.split('?')[0]]?.height || 1350, orientation: (imageMetadata as any)[album.image.split('?')[0]]?.orientation || 'portrait' })) : [])
     ];
 
     // Remove duplicates just in case
