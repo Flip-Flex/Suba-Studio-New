@@ -383,7 +383,8 @@ const CouplePortraitsPage: React.FC<CouplePortraitsPageProps> = () => {
                     {/* RIGHT COLUMN: Sticky Card Stack */}
                     <div className="w-full lg:w-[58%] xl:w-[56%] h-[68vh] sm:h-[68vh] lg:h-[70vh] min-h-[460px] relative flex items-center justify-center overflow-visible lg:pr-6 xl:pr-10">
                         {storyScenes.map((scene, index) => {
-                            const meta = imageMetadata[scene.image as keyof typeof imageMetadata] || imageMetadata[scene.image.replace(/^\//, '') as keyof typeof imageMetadata];
+                            const cleanImg = scene.image.split('?')[0];
+                            const meta = imageMetadata[cleanImg as keyof typeof imageMetadata] || imageMetadata[cleanImg.replace(/^\//, '') as keyof typeof imageMetadata];
                             const isLandscape = meta ? meta.aspectRatio > 1.2 : false; // Use 1.2 to ensure only truly wide images flip to column layout
 
                             return (
@@ -468,7 +469,8 @@ const CouplePortraitsPage: React.FC<CouplePortraitsPageProps> = () => {
                     {/* DESKTOP/TABLET Multi-Column Staggered Grid (100% Preserved & Identical) */}
                     <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
                         {allImages.slice(0, 9).map((img, idx) => {
-                            const meta = imageMetadata[img as keyof typeof imageMetadata] || imageMetadata[img.replace(/^\//, '') as keyof typeof imageMetadata];
+                            const cleanImg = img.split('?')[0];
+                            const meta = imageMetadata[cleanImg as keyof typeof imageMetadata] || imageMetadata[cleanImg.replace(/^\//, '') as keyof typeof imageMetadata];
                             const isLandscape = meta ? meta.aspectRatio > 1.2 : false;
                             const isTall = !isLandscape;
                             
