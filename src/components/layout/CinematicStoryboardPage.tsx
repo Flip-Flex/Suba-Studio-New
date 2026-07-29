@@ -225,7 +225,7 @@ export default function CinematicStoryboardPage({ subcategory }: { subcategory: 
                                                 whileInView="visible"
                                                 viewport={{ once: false, amount: 0.1 }}
                                                 variants={imgVariants}
-                                                className={`story-img-1 w-[85%] mr-auto md:w-full md:col-span-1 lg:col-span-3 lg:col-start-2 relative ${getOrientationAspect(chunk[0].src, 'aspect-[4/5] md:aspect-[3/4]')} rounded-[16px] md:rounded-[24px] overflow-hidden cursor-pointer shadow-[0_20px_50px_rgba(0,0,0,0.4)] group will-change-transform z-10`}
+                                                className={`story-img-1 w-[85%] mr-auto md:w-full md:col-span-1 lg:col-span-3 lg:col-start-2 relative ${getOrientationAspect(chunk[0].src, 'aspect-[4/5] md:aspect-[3/4]')} rounded-[16px] md:rounded-[24px] overflow-hidden cursor-pointer group will-change-transform z-10`}
                                                 onClick={() => {
                                                     const imgIdx = uniqueImages.findIndex(i => i.src === chunk[0].src);
                                                     setLightboxIndex(imgIdx);
@@ -248,7 +248,7 @@ export default function CinematicStoryboardPage({ subcategory }: { subcategory: 
                                                 whileInView="visible"
                                                 viewport={{ once: false, amount: 0.1 }}
                                                 variants={imgVariants}
-                                                className={`story-img-2 w-[95%] mx-auto -mt-16 md:mt-0 md:w-full col-span-1 lg:col-span-4 relative ${getOrientationAspect(chunk[1].src, 'aspect-[3/4] md:aspect-[4/5]')} rounded-[16px] md:rounded-[28px] overflow-hidden cursor-pointer shadow-[0_30px_60px_rgba(0,0,0,0.7)] group will-change-transform z-20`}
+                                                className={`story-img-2 w-[95%] mx-auto -mt-16 md:mt-0 md:w-full col-span-1 lg:col-span-4 relative ${getOrientationAspect(chunk[1].src, 'aspect-[3/4] md:aspect-[4/5]')} rounded-[16px] md:rounded-[28px] overflow-hidden cursor-pointer group will-change-transform z-20`}
                                                 onClick={() => {
                                                     const imgIdx = uniqueImages.findIndex(i => i.src === chunk[1].src);
                                                     setLightboxIndex(imgIdx);
@@ -271,7 +271,7 @@ export default function CinematicStoryboardPage({ subcategory }: { subcategory: 
                                                 whileInView="visible"
                                                 viewport={{ once: false, amount: 0.1 }}
                                                 variants={imgVariants}
-                                                className={`story-img-3 w-[85%] ml-auto -mt-16 md:mt-0 md:w-full lg:col-span-3 lg:col-end-12 relative ${getOrientationAspect(chunk[2].src, 'aspect-[4/5] md:aspect-[3/4]')} rounded-[16px] md:rounded-[24px] overflow-hidden cursor-pointer shadow-[0_20px_50px_rgba(0,0,0,0.4)] group will-change-transform z-10`}
+                                                className={`story-img-3 w-[85%] ml-auto -mt-16 md:mt-0 md:w-full lg:col-span-3 lg:col-end-12 relative ${getOrientationAspect(chunk[2].src, 'aspect-[4/5] md:aspect-[3/4]')} rounded-[16px] md:rounded-[24px] overflow-hidden cursor-pointer group will-change-transform z-10`}
                                                 onClick={() => {
                                                     const imgIdx = uniqueImages.findIndex(i => i.src === chunk[2].src);
                                                     setLightboxIndex(imgIdx);

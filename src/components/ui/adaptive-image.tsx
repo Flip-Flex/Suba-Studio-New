@@ -37,7 +37,7 @@ export const AdaptiveImage: React.FC<AdaptiveImageProps> = ({
       <img
         src={src}
         alt={alt}
-        className={`w-full h-full ${imageClassName}`}
+        className={`w-full h-full object-cover object-center ${imageClassName}`}
         loading="lazy"
         {...props}
       />

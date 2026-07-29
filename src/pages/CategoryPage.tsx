@@ -197,11 +197,11 @@ const CategoryPage = () => {
                                             {/* Left side: one large vertical portrait image taking 60% width */}
                                             <div className="col-span-1">
                                                 <Reveal delay={100} className="h-full w-full">
-                                                    <div className="rounded-[24px] overflow-hidden shadow-[0_15px_45px_rgba(0,0,0,0.08)] h-full w-full">
+                                                    <div className="rounded-[24px] overflow-hidden h-full w-full">
                                                         <img
                                                             src={content.collageImages[0]}
                                                             alt="Bridal portrait main"
-                                                            className="w-full h-full object-cover hover:scale-110 transition-transform duration-[1.5s]"
+                                                            className="w-full h-full object-cover object-center hover:scale-110 transition-transform duration-[1.5s]"
                                                         />
                                                     </div>
                                                 </Reveal>
@@ -210,20 +210,20 @@ const CategoryPage = () => {
                                             {/* Right side: two landscape images stacked vertically, each taking equal height */}
                                             <div className="col-span-1 grid grid-rows-2 gap-8 h-full">
                                                 <Reveal delay={200} className="h-full">
-                                                    <div className="rounded-[24px] overflow-hidden shadow-[0_15px_45px_rgba(0,0,0,0.08)] h-full bg-white aspect-video lg:aspect-auto">
+                                                    <div className="rounded-[24px] overflow-hidden h-full aspect-video lg:aspect-auto">
                                                         <img
                                                             src={content.collageImages[1]}
                                                             alt="Bridal detail top"
-                                                            className="w-full h-full object-cover hover:scale-110 transition-transform duration-[1.5s]"
+                                                            className="w-full h-full object-cover object-center hover:scale-110 transition-transform duration-[1.5s]"
                                                         />
                                                     </div>
                                                 </Reveal>
                                                 <Reveal delay={300} className="h-full">
-                                                    <div className="rounded-[24px] overflow-hidden shadow-[0_15px_45px_rgba(0,0,0,0.08)] h-full bg-white aspect-video lg:aspect-auto">
+                                                    <div className="rounded-[24px] overflow-hidden h-full aspect-video lg:aspect-auto">
                                                         <img
                                                             src={content.collageImages[2]}
                                                             alt="Bridal detail bottom"
-                                                            className="w-full h-full object-cover hover:scale-110 transition-transform duration-[1.5s]"
+                                                            className="w-full h-full object-cover object-center hover:scale-110 transition-transform duration-[1.5s]"
                                                         />
                                                     </div>
                                                 </Reveal>
@@ -234,7 +234,7 @@ const CategoryPage = () => {
                                             {/* Main Large Slot */}
                                             <div className={content.collageImages.length === 1 ? "col-span-2" : "col-span-2"}>
                                                 <Reveal delay={100}>
-                                                    <div className="rounded-[20px] overflow-hidden shadow-lg">
+                                                    <div className="rounded-[20px] overflow-hidden">
                                                         {content.collageImages[0]?.endsWith('.mp4') ? (
                                                             <video
                                                                 src={content.collageImages[0]}
@@ -242,7 +242,7 @@ const CategoryPage = () => {
                                                                 loop
                                                                 muted
                                                                 playsInline
-                                                                className="w-full h-auto object-cover rounded-[20px] hover:scale-105 transition-transform duration-700"
+                                                                className="w-full h-full object-cover object-center rounded-[20px] hover:scale-105 transition-transform duration-700"
                                                             />
                                                         ) : (
                                                             <AdaptiveImage
@@ -259,7 +259,7 @@ const CategoryPage = () => {
                                             {content.collageImages.length > 1 && (
                                                 <div className="col-span-1">
                                                     <Reveal delay={200}>
-                                                        <div className="rounded-[20px] overflow-hidden shadow-lg">
+                                                        <div className="rounded-[20px] overflow-hidden">
                                                             {content.collageImages[1]?.endsWith('.mp4') ? (
                                                                 <video
                                                                     src={content.collageImages[1]}
@@ -267,7 +267,7 @@ const CategoryPage = () => {
                                                                     loop
                                                                     muted
                                                                     playsInline
-                                                                    className="w-full h-auto object-cover rounded-[20px] hover:scale-105 transition-transform duration-700"
+                                                                    className="w-full h-full object-cover object-center rounded-[20px] hover:scale-105 transition-transform duration-700"
                                                                 />
                                                             ) : (
                                                                 <AdaptiveImage
@@ -285,7 +285,7 @@ const CategoryPage = () => {
                                             {content.collageImages.length > 2 && (
                                                 <div className="col-span-1">
                                                     <Reveal delay={300}>
-                                                        <div className="rounded-[20px] overflow-hidden shadow-lg">
+                                                        <div className="rounded-[20px] overflow-hidden">
                                                             {content.collageImages[2]?.endsWith('.mp4') ? (
                                                                 <video
                                                                     src={content.collageImages[2]}
@@ -293,7 +293,7 @@ const CategoryPage = () => {
                                                                     loop
                                                                     muted
                                                                     playsInline
-                                                                    className="w-full h-auto object-cover rounded-[20px] hover:scale-105 transition-transform duration-700"
+                                                                    className="w-full h-full object-cover object-center rounded-[20px] hover:scale-105 transition-transform duration-700"
                                                                 />
                                                             ) : (
                                                                 <AdaptiveImage
@@ -418,12 +418,11 @@ const CategoryPage = () => {
                                 className="columns-1 sm:columns-2 lg:columns-3"
                                 gap="2.5rem"
                                 renderItem={(item) => (
-                                    <div className="overflow-hidden rounded-none sm:rounded-2xl shadow-lg bg-white h-full relative group">
-                                        <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors z-10 pointer-events-none" />
+                                    <div className="overflow-hidden rounded-none sm:rounded-2xl h-full relative group">
                                         <img
                                             src={item.image}
                                             alt={item.title}
-                                            className="w-full h-auto object-cover"
+                                            className="w-full h-full object-cover object-center"
                                             loading="lazy"
                                         />
                                     </div>

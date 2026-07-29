@@ -30,7 +30,7 @@ export const MasonryGallery: React.FC<MasonryGalleryProps> = ({
   return (
     <div className={`${colClasses} ${gap} w-full`}>
       {images.map((item, index) => (
-        <div key={item.id || index} className="break-inside-avoid relative group rounded-[20px] overflow-hidden shadow-lg mb-4">
+        <div key={item.id || index} className="break-inside-avoid relative group rounded-[20px] overflow-hidden mb-4">
           {item.image.endsWith('.mp4') || item.image.endsWith('.webm') ? (
             <video 
               src={item.image} 
