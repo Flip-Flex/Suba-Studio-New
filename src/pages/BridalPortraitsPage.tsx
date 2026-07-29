@@ -479,7 +479,7 @@ const BridalPortraitsPage: React.FC<BridalPortraitsPageProps> = () => {
                     </div>
 
                     {/* DESKTOP/TABLET Multi-Column Staggered Grid */}
-                    <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-5 grid-flow-dense gap-8 md:gap-10">
+                    <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
                         {remainingImages.map((img, idx) => {
                             const meta = imageMetadata[img as keyof typeof imageMetadata] || imageMetadata[img.replace(/^\//, '') as keyof typeof imageMetadata];
                             const isLandscape = meta ? meta.aspectRatio > 1.2 : false;
@@ -491,8 +491,8 @@ const BridalPortraitsPage: React.FC<BridalPortraitsPageProps> = () => {
                                         src={img} 
                                         title={data.albums[idx % data.albums.length]?.title || `Bridal Portrait 0${idx + 1}`}
                                         category="Bridal Photography"
-                                        style={meta ? { aspectRatio: `${meta.aspectRatio}` } : undefined}
-                                        className={!meta ? (isTall ? 'aspect-[3/4]' : 'aspect-[3/2]') : ''}
+                                        onClick={() => openLightbox(img)}
+                                        className={isTall ? 'aspect-[3/4]' : 'aspect-[3/2]'}
                                     />
                                 </div>
                             );
