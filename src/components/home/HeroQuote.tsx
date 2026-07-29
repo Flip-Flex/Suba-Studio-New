@@ -186,7 +186,7 @@ export const HeroQuote: React.FC = () => {
         {/* Mouse Parallax Inner Container */}
         <div ref={quoteRef} className="flex justify-end items-end overflow-hidden px-2">
           
-          <div className="flex flex-col justify-end items-end gap-0">
+          <div className="flex flex-wrap justify-end items-end gap-x-3 sm:gap-x-4 gap-y-1">
             {quoteWords.map((word, wordIndex) => (
               <span
                 key={wordIndex}
