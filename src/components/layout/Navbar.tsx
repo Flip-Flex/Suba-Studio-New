@@ -408,12 +408,7 @@ const Navbar = () => {
                             transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
                             className="fixed top-0 right-0 bottom-0 w-[85vw] max-w-[340px] bg-white text-black shadow-[0_0_80px_rgba(0,0,0,0.35)] z-[60] lg:hidden overflow-y-auto flex flex-col justify-between [padding-left:max(20px,env(safe-area-inset-left))] [padding-right:max(20px,env(safe-area-inset-right))] safe-pt"
                         >
-                            {/* Drawer Header (Logo + Close X Button) */}
-                            <div className="pt-5 sm:pt-6 pb-3 px-4 sm:px-5 flex items-center justify-between border-b border-gray-100/80 shrink-0 h-16">
-                                <span className="font-serif font-black tracking-[0.2em] text-xs sm:text-sm uppercase text-gray-900 select-none">
-                                    SUBA STUDIOS
-                                </span>
-                            </div>
+
 
                             {/* Accordion Navigation Items */}
                             <div className="flex flex-col gap-1 py-4 px-3 sm:px-4 my-auto">
